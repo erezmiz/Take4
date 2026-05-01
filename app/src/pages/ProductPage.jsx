@@ -1,14 +1,8 @@
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import ImageGallery from '../components/ImageGallery';
-import ProductDetails from '../components/ProductDetails';
-import StatusProduct from '../components/StatusProduct';
-import './ProductPage.css';
 
-export default function ProductPage({ onNavigate }) {
+export default function ProductPage() {
   return (
     <div dir="rtl">
-      <Navbar onNavigate={onNavigate} />
+      
       <main className="product-page-main">
         <div className="breadcrumb">
           <span className="material-symbols-outlined">arrow_forward</span>
@@ -24,7 +18,7 @@ export default function ProductPage({ onNavigate }) {
           </div>
         </div>
       </main>
-      <Footer />
+      
     </div>
   );
 }

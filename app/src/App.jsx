@@ -1,34 +1,29 @@
-import { useState } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Layout from './components/Layout';
 import LandingPage from './pages/LandingPage';
 import DashboardPage from './pages/DashboardPage';
 import ProductPage from './pages/ProductPage';
 import ChatPage from './pages/ChatPage';
 import NewRequestPage from './pages/NewRequestPage';
 import ProfilePage from './pages/ProfilePage';
-import './App.css';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      { index: true, element: <LandingPage /> },
+      { path: 'dashboard', element: <DashboardPage /> },
+      { path: 'product', element: <ProductPage /> },
+      { path: 'chat', element: <ChatPage /> },
+      { path: 'new-request', element: <NewRequestPage /> },
+      { path: 'profile', element: <ProfilePage /> },
+    ],
+  },
+]);
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('profile');
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'dashboard':
-        return <DashboardPage onNavigate={setCurrentPage} />;
-      case 'product':
-        return <ProductPage onNavigate={setCurrentPage} />;
-      case 'chat':
-        return <ChatPage onNavigate={setCurrentPage} />;
-      case 'new-request':
-        return <NewRequestPage onNavigate={setCurrentPage} />;
-      case 'profile':
-        return <ProfilePage onNavigate={setCurrentPage} />;
-      case 'landing':
-      default:
-        return <LandingPage onNavigate={setCurrentPage} />;
-    }
-  };
-
-  return <div className="App">{renderPage()}</div>;
+  return <RouterProvider router={router} />;
 }
 
 export default App;

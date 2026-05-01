@@ -1,12 +1,8 @@
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import UploadSection from '../components/UploadSection';
-import './NewRequestPage.css';
 
-export default function NewRequestPage({ onNavigate }) {
+export default function NewRequestPage() {
   return (
     <div dir="rtl">
-      <Navbar onNavigate={onNavigate} />
+      
       <main className="new-request-main">
         <div className="back-navigation">
           <span className="material-symbols-outlined">arrow_forward</span>
@@ -62,7 +58,7 @@ export default function NewRequestPage({ onNavigate }) {
           </form>
         </section>
       </main>
-      <Footer />
+      
     </div>
   );
 }

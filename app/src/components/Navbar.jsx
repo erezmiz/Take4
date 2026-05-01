@@ -1,42 +1,59 @@
 import { useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import './Navbar.css';
 
-export default function Navbar({ onNavigate }) {
+export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navLinks = [
+    { to: "/profile", text: "פרופיל" },
+    { to: "/chat", text: "הודעות" },
+    { to: "/dashboard", text: "בקשות" },
+    { to: "/", text: "גלה" },
+  ];
+
   return (
-    <header className="navbar">
-      <nav className="nav-content">
-        <div className="logo" onClick={() => onNavigate && onNavigate('landing')} style={{ cursor: 'pointer' }}>BringIt</div>
-        
-        <div className={`desktop-links ${isMenuOpen ? 'mobile-menu-open' : ''}`}>
-          <a href="#" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('landing'); }} className="nav-link active">גילוי</a>
-          <a href="#" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('dashboard'); }} className="nav-link">בקשות</a>
-          <a href="#" className="nav-link">קהילה</a>
-          <a href="#" className="nav-link">בטיחות</a>
+    <header className="navbar-header">
+      <div className="nav-content">
+        <div className="nav-left">
+          <div className="nav-user-actions">
+            <img 
+              alt="User avatar" 
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtbEFKkRo4he01oZOVEFsfVcjpqThez3_xAMKwMF4C1zV23MSWOR5J7O7qIBmUvywgguO8Tc_O9a3ggvuMEC77q5M939HwK0Z-s7a9NZanIvug-55q7Md6JY78gIxbTiu4gKL6XLdH2vNneJie9aKJPYFpwoymx1kkHntICTQzni8aCY6RH2eLELRAT05eL-djxo5zXGblVa_ZDMMPdJ0KBA71wrXVRevLet60IhikIQGQHlwkNJUccM4iHq_ZMIA3e3Mt-UO_QSMk" 
+              className="nav-avatar"
+            />
+            <button className="nav-icon-button">
+              <span className="material-symbols-outlined">notifications</span>
+            </button>
+            <Link to="/new-request" className="post-request-btn">
+              פרסם בקשה
+            </Link>
+          </div>
         </div>
 
-        <div className="nav-actions">
-          <button className="notification-btn">🔔</button>
-          <div className="user-section">
-            <button className="publish-btn">פרסם בקשה</button>
-            <div className="profile-image">
-              <img 
-                alt="פרופיל משתמש" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2k9NHQoarS4VWMytB8bH4NI4edkYhAWAhjpJzANd8u2f9hbI1jtT6OgHipqegKASeOspr9hh06PJxrybrB4WSLP2afhBxSX56msIw59DMJHcIgmF0Lx-TNNIM8ozdboi3AV0iBPJsalRrNSFwnoFj_JT1wFvuilANXnP-SqZmcDkl7ZeYrJG5iSZtsGxhy53dpiJ7813_G-urUVS26DzMKvzBFhI3bDpCu6GVueXtxtpLhvbd5SGAbyndBdq0oP_H1f0CRqdtkfEq"
-              />
-            </div>
-          </div>
-          <button 
-            className="hamburger-btn"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+        <nav className={`nav-center ${isMenuOpen ? 'mobile-open' : ''}`}>
+          {navLinks.map(link => (
+            <NavLink 
+              key={link.to} 
+              to={link.to} 
+              className="nav-link-item"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {link.text}
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className="nav-right">
+          <Link to="/" className="nav-logo">BringIt</Link>
         </div>
-      </nav>
+        
+        <button className="hamburger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <span className="material-symbols-outlined">
+            {isMenuOpen ? 'close' : 'menu'}
+          </span>
+        </button>
+      </div>
     </header>
   );
 }
