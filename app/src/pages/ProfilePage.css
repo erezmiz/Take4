@@ -1,0 +1,7 @@
+.profile-page-main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-container-margin);
+  padding-bottom: 6rem; /* space for mobile nav */
+  font-family: 'Rubik', sans-serif;
+}
