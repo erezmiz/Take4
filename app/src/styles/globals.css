@@ -1,0 +1,181 @@
+/* =============================================================================
+   DESIGN SYSTEM - CSS CUSTOM PROPERTIES
+   ============================================================================= */
+
+:root {
+  /* =========================================================================
+     COLORS - Core Color Tokens
+     ========================================================================= */
+
+  /* Primary Colors */
+  --color-primary: #003ec7;
+  --color-primary-container: #0052ff;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #dfe3ff;
+  --color-inverse-primary: #b7c4ff;
+
+  /* Primary Fixed Colors */
+  --color-primary-fixed: #dde1ff;
+  --color-primary-fixed-dim: #b7c4ff;
+  --color-on-primary-fixed: #001452;
+  --color-on-primary-fixed-variant: #0038b6;
+
+  /* Secondary Colors */
+  --color-secondary: #5c5f60;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #dee0e2;
+  --color-on-secondary-container: #606365;
+
+  /* Secondary Fixed Colors */
+  --color-secondary-fixed: #e1e2e4;
+  --color-secondary-fixed-dim: #c5c6c8;
+  --color-on-secondary-fixed: #191c1e;
+  --color-on-secondary-fixed-variant: #444749;
+
+  /* Tertiary Colors */
+  --color-tertiary: #952200;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #bf3003;
+  --color-on-tertiary-container: #ffddd5;
+
+  /* Tertiary Fixed Colors */
+  --color-tertiary-fixed: #ffdbd2;
+  --color-tertiary-fixed-dim: #ffb4a1;
+  --color-on-tertiary-fixed: #3c0800;
+  --color-on-tertiary-fixed-variant: #891e00;
+
+  /* Surface Colors */
+  --color-surface: #fbf8ff;
+  --color-surface-dim: #d9d9e7;
+  --color-surface-bright: #fbf8ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f2ff;
+  --color-surface-container: #ededfb;
+  --color-surface-container-high: #e7e7f5;
+  --color-surface-container-highest: #e1e1ef;
+  --color-surface-variant: #e1e1ef;
+  --color-surface-main: #ffffff;
+  --color-surface-tint: #004ced;
+
+  /* On Surface Colors */
+  --color-on-surface: #191b25;
+  --color-on-surface-variant: #434656;
+
+  /* Background Colors */
+  --color-background: #fbf8ff;
+  --color-on-background: #191b25;
+  --color-inverse-surface: #2e303a;
+  --color-inverse-on-surface: #f0effe;
+
+  /* Status & Semantic Colors */
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-status-error: #ef4444;
+  --color-status-success: #10b981;
+  --color-status-warning: #f59e0b;
+
+  /* Outline & Border Colors */
+  --color-outline: #737688;
+  --color-outline-variant: #c3c5d9;
+  --color-border-light: #e5e7eb;
+
+  /* Text Colors */
+  --color-text-primary: #111827;
+
+  /* =========================================================================
+     TYPOGRAPHY - Font Family & Scales
+     ========================================================================= */
+
+  /* Font Family */
+  --font-family-primary: "Plus Jakarta Sans", "Rubik", sans-serif;
+  --font-family-body: "Plus Jakarta Sans", "Rubik", sans-serif;
+
+  /* Font Sizes */
+  --font-size-heading-xl: 32px;
+  --font-size-heading-lg: 24px;
+  --font-size-body-md: 16px;
+  --font-size-label-md: 14px;
+  --font-size-label-sm: 14px;
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-heading-xl: 1.2;
+  --line-height-heading-lg: 1.3;
+  --line-height-body-md: 1.5;
+  --line-height-label-md: 1.4;
+  --line-height-label-sm: 1.4;
+
+  /* Typography Scales */
+  --typography-headline-xl: 700 32px / 1.2 "Plus Jakarta Sans", "Rubik", sans-serif;
+  --typography-headline-lg: 600 24px / 1.3 "Plus Jakarta Sans", "Rubik", sans-serif;
+  --typography-body-md: 400 16px / 1.5 "Plus Jakarta Sans", "Rubik", sans-serif;
+  --typography-label-md: 400 14px / 1.4 "Plus Jakarta Sans", "Rubik", sans-serif;
+  --typography-label-sm: 300 14px / 1.4 "Plus Jakarta Sans", "Rubik", sans-serif;
+
+  /* =========================================================================
+     SPACING - Scale & Layout
+     ========================================================================= */
+
+  /* Spacing Scale (Base: 8px) */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Layout Spacing */
+  --spacing-container-margin: 24px;
+  --spacing-gutter: 16px;
+
+  /* =========================================================================
+     BORDER RADIUS - Shape & Roundness
+     ========================================================================= */
+
+  --border-radius-sm: 0.25rem;
+  --border-radius-default: 0.5rem;
+  --border-radius-md: 0.75rem;
+  --border-radius-lg: 1rem;
+  --border-radius-xl: 1.5rem;
+  --border-radius-full: 9999px;
+
+  /* Component Border Radius */
+  --border-radius-button: 12px;
+  --border-radius-card: 12px;
+  --border-radius-input: 12px;
+
+  /* =========================================================================
+     SHADOWS - Elevation & Depth
+     ========================================================================= */
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Apply default body styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: var(--font-family-primary);
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  line-height: var(--line-height-body-md);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

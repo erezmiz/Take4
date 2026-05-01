@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BringIt - קנו בזול יותר מחו"ל, הרוויחו מהטיסה שלכם</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#fbf8ff",
+                        "on-secondary-container": "#606365",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#952200",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb4a1",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e7e7f5",
+                        "primary-fixed-dim": "#b7c4ff",
+                        "on-surface": "#191b25",
+                        "on-tertiary-fixed": "#3c0800",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f0effe",
+                        "on-tertiary-container": "#ffddd5",
+                        "on-secondary-fixed-variant": "#444749",
+                        "on-primary-fixed-variant": "#0038b6",
+                        "text-primary": "#111827",
+                        "primary-container": "#0052ff",
+                        "outline": "#737688",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#b7c4ff",
+                        "on-secondary": "#ffffff",
+                        "status-error": "#EF4444",
+                        "secondary-fixed": "#e1e2e4",
+                        "outline-variant": "#c3c5d9",
+                        "on-primary-container": "#dfe3ff",
+                        "surface-container-highest": "#e1e1ef",
+                        "surface-dim": "#d9d9e7",
+                        "on-tertiary": "#ffffff",
+                        "accent-warning": "#F59E0B",
+                        "on-secondary-fixed": "#191c1e",
+                        "surface": "#fbf8ff",
+                        "on-background": "#191b25",
+                        "tertiary-fixed": "#ffdbd2",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f3f2ff",
+                        "on-primary-fixed": "#001452",
+                        "border-light": "#E5E7EB",
+                        "surface-main": "#FFFFFF",
+                        "surface-tint": "#004ced",
+                        "surface-variant": "#e1e1ef",
+                        "primary-fixed": "#dde1ff",
+                        "on-tertiary-fixed-variant": "#891e00",
+                        "secondary-fixed-dim": "#c5c6c8",
+                        "tertiary-container": "#bf3003",
+                        "surface-container": "#ededfb",
+                        "secondary": "#5c5f60",
+                        "primary": "#003ec7",
+                        "on-surface-variant": "#434656",
+                        "inverse-surface": "#2e303a",
+                        "secondary-container": "#dee0e2",
+                        "status-success": "#10B981",
+                        "background": "#fbf8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "container-margin": "24px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Rubik", "sans-serif"],
+                        "body-md": ["Rubik", "sans-serif"],
+                        "headline-xl": ["Rubik", "sans-serif"],
+                        "label-md": ["Rubik", "sans-serif"],
+                        "label-sm": ["Rubik", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-xl": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "label-sm": ["14px", {"lineHeight": "1.4", "fontWeight": "300"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Rubik', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        [dir="rtl"] .material-symbols-outlined { transform: scaleX(-1); }
+        [dir="rtl"] .material-symbols-outlined[data-icon="notifications"] { transform: none; }
+        [dir="rtl"] .material-symbols-outlined[data-icon="shield_with_heart"] { transform: none; }
+        [dir="rtl"] .material-symbols-outlined[data-icon="verified_user"] { transform: none; }
+        [dir="rtl"] .material-symbols-outlined[data-icon="account_circle"] { transform: none; }
+        [dir="rtl"] .material-symbols-outlined[data-icon="home"] { transform: none; }
+        [dir="rtl"] .material-symbols-outlined[data-icon="search"] { transform: none; }
+        [dir="rtl"] .material-symbols-outlined[data-icon="add_box"] { transform: none; }
+        [dir="rtl"] .material-symbols-outlined[data-icon="chat_bubble"] { transform: none; }
+        [dir="rtl"] .material-symbols-outlined[data-icon="person"] { transform: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-x-hidden">
+<!-- Top Navigation Bar - Shared Component -->
+<header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-gray-100 dark:border-gray-800 shadow-sm shadow-blue-900/5 docked full-width top-0 sticky z-50">
+<nav class="flex justify-between items-center w-full px-6 py-3 max-w-[1280px] mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-blue-600 dark:text-blue-400 font-['Rubik']">BringIt</div>
+<div class="hidden md:flex items-center space-x-8 space-x-reverse">
+<a class="text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 pb-1 font-['Rubik'] text-sm font-medium tracking-wide" href="#">גילוי</a>
+<a class="text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-all duration-200 font-['Rubik'] text-sm font-medium tracking-wide" href="#">בקשות</a>
+<a class="text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-all duration-200 font-['Rubik'] text-sm font-medium tracking-wide" href="#">קהילה</a>
+<a class="text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-all duration-200 font-['Rubik'] text-sm font-medium tracking-wide" href="#">בטיחות</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-gray-500 dark:text-gray-400 p-2 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-xl transition-all active:opacity-80 active:scale-95" data-icon="notifications">notifications</button>
+<div class="flex items-center gap-2">
+<button class="bg-primary text-on-primary px-5 py-2.5 rounded-lg font-medium active:scale-95 transition-transform text-sm font-['Rubik']">פרסם בקשה</button>
+<button class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container active:scale-95 transition-transform">
+<img alt="פרופיל משתמש" data-alt="Close-up professional headshot of a friendly smiling man in a business casual shirt with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2k9NHQoarS4VWMytB8bH4NI4edkYhAWAhjpJzANd8u2f9hbI1jtT6OgHipqegKASeOspr9hh06PJxrybrB4WSLP2afhBxSX56msIw59DMJHcIgmF0Lx-TNNIM8ozdboi3AV0iBPJsalRrNSFwnoFj_JT1wFvuilANXnP-SqZmcDkl7ZeYrJG5iSZtsGxhy53dpiJ7813_G-urUVS26DzMKvzBFhI3bDpCu6GVueXtxtpLhvbd5SGAbyndBdq0oP_H1f0CRqdtkfEq"/>
+</button>
+</div>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative w-full py-20 lg:py-32 px-6 overflow-hidden">
+<div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+<div class="z-10">
+<span class="inline-block px-4 py-1.5 mb-6 rounded-full bg-primary-container/10 text-primary font-bold text-sm tracking-wide font-['Rubik']">בשימוש על ידי 50,000+ מטיילים</span>
+<h1 class="font-['Rubik'] font-bold text-[48px] lg:text-[64px] leading-tight mb-6 text-on-background">
+                    קנו <span class="text-primary">בזול יותר</span> מחו"ל / הרוויחו <span class="text-status-success">כסף</span> מהטיסה שלכם.
+                </h1>
+<p class="font-['Rubik'] font-normal text-on-surface-variant text-lg mb-10 max-w-xl">
+                    פלטפורמת הקהילה שמחברת בין קונים למטיילים. קבלו מוצרים מקוריים מכל מקום בעולם, או הפכו את המקום הפנוי במזוודה לכסף.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-lg font-bold text-lg shadow-lg shadow-primary/20 active:scale-95 transition-all font-['Rubik']">התחילו לקנות</button>
+<button class="bg-surface-main border-2 border-slate-200 px-8 py-4 rounded-lg font-bold text-lg hover:border-primary hover:text-primary transition-all font-['Rubik']">הפכו למטיילים</button>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -top-12 -right-12 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-12 -left-12 w-80 h-80 bg-status-success/10 rounded-full blur-3xl"></div>
+<div class="grid grid-cols-12 gap-4">
+<div class="col-span-8 h-64 rounded-xl overflow-hidden shadow-xl">
+<img class="w-full h-full object-cover" data-alt="Happy young woman carrying shopping bags walking through a sunny luxury airport terminal with high glass ceilings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU6OEgcl2SBSMaVgm2K5T86Dx5Q8N2gw25-6mUtXGa4QaIdHHc8FzW9qWD6wh6llSS-NRzwlTPRMQpur0P4Dto3RipfCyl3EbX-bqNKDJAqcxTlw0y4d25DcIq3wikT6v7jiAgt7YB1sFyqcGltN9QaEaI9L21LorW7KGJPrHLsqgO1vL2i3nAxP8cBZvzGBXVziiWbU7bpQ62Kc6CZImWRYWCG4x5L2ah2li1s-_FcrPT7foBj4EJMB7WcEB2dNupU2fiFqbfLx0S"/>
+</div>
+<div class="col-span-4 h-64 bg-primary flex flex-col items-center justify-center text-on-primary p-6 text-center shadow-xl rounded-xl">
+<span class="material-symbols-outlined text-4xl mb-4" data-icon="shield_with_heart" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+<span class="font-bold text-xl font-['Rubik']">100% בטוח</span>
+<span class="text-sm opacity-80 mt-2 font-['Rubik']">החזר כספי מובטח על כל הזמנה</span>
+</div>
+<div class="col-span-5 h-72 rounded-xl overflow-hidden shadow-xl">
+<img class="w-full h-full object-cover" data-alt="Cinematic shot of a vintage leather suitcase open on a modern bed with travel essentials and global currency nearby" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeY_soAEZZ1YIRY6ulfwn5rEm_VFpnE8IOVPt1Fb9evpeGCw7_fEwqL11U7oVQoA_wE6xwVpH7EZm9H7m9YDfedb93Ek2dBy20aiFf3EbpAYPx_UWnE1XmcjQ36TgTGHsQqK6ZyV1cnK4kinQrR0xfwYrAanp31x-SgbXZtaROOmumCbzklkBk9lCXx37m-etvdgsh_aHIDNOgmuvfVT_5WHm64ebOuFRkWCsh6dzdXJhLaH9rzGI_n_l0ckKd8D9Nl7g6_g33UWLQ"/>
+</div>
+<div class="col-span-7 h-72 glass-card rounded-xl p-8 flex flex-col justify-end shadow-xl">
+<div class="flex -space-x-3 space-x-reverse mb-4">
+<img class="w-10 h-10 rounded-full border-2 border-white" data-alt="portrait of a traveler" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDys9DEyH1AGuibFdvDRE8QzwHIaWZgmqIMwvJLE92myaDKhflwrHxqKMTYvfwXyOVgf-BFVUcFKc3JecvdLlr8uerYf_-jhqCn-VVgGS8MG3MWoI2snAUvmPCwrN9ycqR4BWIVQtiF3pjPfSQJcxsmzq2vOBcrjvRvlK3Bk_5YO0rp1qjoPoVAA_JfvbG01Zu1RMkIUS--cpokEovPL0MTVZ-exqvJZjvT_k8_owFicS5to0_odZE4TwzDbd_2_sxwec-33fP4E9rQ"/>
+<img class="w-10 h-10 rounded-full border-2 border-white" data-alt="portrait of a shopper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCS3j8u_UnFd4s1XEL0ukpk-22lIaSkT1ZILK6jnSd6qciKh9Y3zrRAgDZhhfS47uqLimOQ722X6HmGTe1LAwSw4CNgCbMhhDOqS1EQSQRyNsbasAYfdqA3jMQG9mf76R5ejmkCvaHSqSBPsjh8ZeQSUUjH7KABANP6ZHAjmUd5BuJn4Hxynexs5iLKzw02vripdIKBrTuNNLDlPNrZElwD_fCFw15AwxHwvb4JDmSULRnxCFpvuIspEcC3XOXhZ1246CjdbLHDy2Jm"/>
+<img class="w-10 h-10 rounded-full border-2 border-white" data-alt="portrait of a community member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAoGp7OhGpYFk-Nc_Bu3wFaN-W_rlkNTIR4I7LsXKtJqDAiKWZBvOgh6BqeyZ3LGeAyyqO7Ce_PI6CoFOiFeIdedyaLw14PW7hdj3x_QLCgGnYWMytOsbijdruGudihbfPxKFRH8iKjBaHlZBstFN4WRxwllK5aKRZ_oBgmlF_wEAsgy6VUHtxvkTe_ZttYkfAtmcDPxlhiYspx_ECVgnl-Ck2wTpM54tn20vXK5fYD971gGpJWrbjGaagMnqFitVBbaRJF9rrUHCK"/>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container text-xs font-bold font-['Rubik']">+2k</div>
+</div>
+<p class="font-['Rubik'] font-semibold text-xl text-primary leading-tight">"הרווחתי $400 בטיסה שלי מניו יורק לפריז פשוט על ידי הבאת מוצרי יוקרה."</p>
+<span class="text-sm text-on-surface-variant mt-2 font-medium font-['Rubik']">— שרה ק., מטיילת מקצוענית</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust & Features Section -->
+<section class="py-24 bg-surface-container-low px-6">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-['Rubik'] font-bold text-4xl mb-4">למה קהילת BringIt?</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto font-['Rubik']">מסחר עולמי פוגש אמון אישי. אנחנו מגדירים מחדש איך אתם משיגים את מה שאתם אוהבים.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 flex flex-col items-start gap-4 hover:shadow-md transition-all">
+<div class="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="savings">savings</span>
+</div>
+<h3 class="font-['Rubik'] font-semibold text-xl">חיסכון אדיר</h3>
+<p class="text-on-surface-variant font-['Rubik']">הימנעו מעלויות שילוח בינלאומיות גבוהות ומסי יבוא. קנו במחירים מקומיים בכל מדינה.</p>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 flex flex-col items-start gap-4 hover:shadow-md transition-all">
+<div class="w-12 h-12 rounded-lg bg-green-50 flex items-center justify-center text-status-success">
+<span class="material-symbols-outlined" data-icon="travel_explore">travel_explore</span>
+</div>
+<h3 class="font-['Rubik'] font-semibold text-xl">טוסו בחינם</h3>
+<p class="text-on-surface-variant font-['Rubik']">הרוויחו מספיק כסף כדי לכסות את עלויות הטיסה שלכם על ידי מסירת פריטים קטנים המבוקשים על ידי המקומיים.</p>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 flex flex-col items-start gap-4 hover:shadow-md transition-all">
+<div class="w-12 h-12 rounded-lg bg-amber-50 flex items-center justify-center text-accent-warning">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+</div>
+<h3 class="font-['Rubik'] font-semibold text-xl">אמון מאומת</h3>
+<p class="text-on-surface-variant font-['Rubik']">מערכת הנאמנות המאובטחת שלנו מבטיחה שהתשלומים ישוחררו רק כאשר הפריטים נמסרו בבטחה.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Cards Section -->
+<section class="py-24 px-6 max-w-7xl mx-auto">
+<div class="grid md:grid-cols-2 gap-8">
+<!-- Shopper CTA -->
+<div class="relative overflow-hidden group rounded-xl aspect-[4/3] flex items-end p-8 md:p-12">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Vibrant luxury fashion boutique interior with designer bags on display and warm atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_QsA-vEmfjs7op2YFs28ynYev9g14dMIGImpd8wznt4mdH3sWieM60NgETBMaDwWmKiplLcTOh2dRQ76lQWaPZ2hLTu4uZvt2ZvnUJ1WkagVCtO35SjCYHdqHCTpfYgtleu7j9xMIrc8wN_eJKeItVOyk543MufYgrViWYeqbcmUYU1If4vb5t4DkcSwS-pU-hDjZYny0mHUQuU00Jfp6P4cJF7raxT8Qw7PsMr7ccaPuvQQSpGdJ4jZMx0nlALomsk_FI_67h_Jd"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+</div>
+<div class="relative z-10 text-white">
+<h3 class="text-3xl font-bold mb-4 font-['Rubik']">רוצים משהו מחו"ל?</h3>
+<p class="mb-8 text-lg opacity-90 max-w-sm font-['Rubik']">בקשו מוצרים שאינכם יכולים למצוא בארץ ושלמו מחירים מקומיים.</p>
+<button class="bg-white text-primary px-8 py-3 rounded-lg font-bold hover:bg-primary hover:text-white transition-all active:scale-95 font-['Rubik']">פרסמו בקשה</button>
+</div>
+</div>
+<!-- Traveler CTA -->
+<div class="relative overflow-hidden group rounded-xl aspect-[4/3] flex items-end p-8 md:p-12">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Passenger view from an airplane window overlooking white fluffy clouds and a clear blue sky during daytime" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkctywjEDgoQz5noTDq9_2rz5mJqoe-9HX7ZQdyHhKdLOu2K9KmJRdbU0DTIQ5zU2lHTIlX7SI9Y2-O2sIU1b9N11666e1V8I-i1mTOQfvoU9ueGBSnQV7clmZHoLc_SYfLxAd-cqIzAR7wHMwKEEKsLewk6JzmaJBPD_ArRQ_g3SigMLhPzinpyrnlzYeLfX_eWKVKpmB9oEYU8hcfxJkrxkmdWnaB_4ZHBD96KcYH40zVUROE94_Hspazzgvlp-AezeMzhAnqZdr"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+</div>
+<div class="relative z-10 text-white">
+<h3 class="text-3xl font-bold mb-4 font-['Rubik']">טסים לאנשהו בקרוב?</h3>
+<p class="mb-8 text-lg opacity-90 max-w-sm font-['Rubik']">הרוויחו כסף בטיסה שלכם על ידי מסירת פריטים. נצלו את המקום הפנוי שלכם.</p>
+<button class="bg-status-success text-white px-8 py-3 rounded-lg font-bold hover:bg-green-600 transition-all active:scale-95 font-['Rubik']">הוסיפו נסיעה</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer - Shared Component -->
+<footer class="bg-gray-50 dark:bg-slate-950 border-t border-gray-200 dark:border-gray-800 w-full mt-auto">
+<div class="max-w-[1280px] mx-auto px-8 py-12 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex flex-col gap-2 items-center md:items-start">
+<div class="font-bold text-gray-900 dark:text-white font-['Rubik'] text-lg">BringIt</div>
+<div class="font-['Rubik'] text-xs text-gray-500 dark:text-gray-400">© 2024 BringIt. Built on Ne'emanut principles.</div>
+</div>
+<div class="flex gap-8 flex-wrap justify-center">
+<a class="font-['Rubik'] text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-colors underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-blue-500" href="#">Hebrew Support</a>
+<a class="font-['Rubik'] text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-colors underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-blue-500" href="#">Safety Center</a>
+<a class="font-['Rubik'] text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-colors underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-blue-500" href="#">Terms of Service</a>
+<a class="font-['Rubik'] text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-colors underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-blue-500" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+<!-- Mobile Bottom Navigation Bar - Shared Component -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-white/98 dark:bg-slate-900/98 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] border-t border-gray-100 dark:border-gray-800 rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/20 rounded-xl px-3 py-1 tap-highlight-transparent active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Rubik'] text-[11px] font-semibold">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 hover:text-blue-500 transition-colors tap-highlight-transparent active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-['Rubik'] text-[11px] font-semibold">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 hover:text-blue-500 transition-colors tap-highlight-transparent active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="add_box">add_box</span>
+<span class="font-['Rubik'] text-[11px] font-semibold">Sell</span>
+</div>
+<div class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 hover:text-blue-500 transition-colors tap-highlight-transparent active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-['Rubik'] text-[11px] font-semibold">Inbox</span>
+</div>
+<div class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 hover:text-blue-500 transition-colors tap-highlight-transparent active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Rubik'] text-[11px] font-semibold">Profile</span>
+</div>
+</nav>
+</body></html>

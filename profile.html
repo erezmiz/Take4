@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BringIt - הפרופיל שלי ועסקאות</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#fbf8ff",
+                    "on-secondary-container": "#606365",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#952200",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb4a1",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e7e7f5",
+                    "primary-fixed-dim": "#b7c4ff",
+                    "on-surface": "#191b25",
+                    "on-tertiary-fixed": "#3c0800",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f0effe",
+                    "on-tertiary-container": "#ffddd5",
+                    "on-secondary-fixed-variant": "#444749",
+                    "on-primary-fixed-variant": "#0038b6",
+                    "text-primary": "#111827",
+                    "primary-container": "#0052ff",
+                    "outline": "#737688",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#b7c4ff",
+                    "on-secondary": "#ffffff",
+                    "status-error": "#EF4444",
+                    "secondary-fixed": "#e1e2e4",
+                    "outline-variant": "#c3c5d9",
+                    "on-primary-container": "#dfe3ff",
+                    "surface-container-highest": "#e1e1ef",
+                    "surface-dim": "#d9d9e7",
+                    "on-tertiary": "#ffffff",
+                    "accent-warning": "#F59E0B",
+                    "on-secondary-fixed": "#191c1e",
+                    "surface": "#fbf8ff",
+                    "on-background": "#191b25",
+                    "tertiary-fixed": "#ffdbd2",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f3f2ff",
+                    "on-primary-fixed": "#001452",
+                    "border-light": "#E5E7EB",
+                    "surface-main": "#FFFFFF",
+                    "surface-tint": "#004ced",
+                    "surface-variant": "#e1e1ef",
+                    "primary-fixed": "#dde1ff",
+                    "on-tertiary-fixed-variant": "#891e00",
+                    "secondary-fixed-dim": "#c5c6c8",
+                    "tertiary-container": "#bf3003",
+                    "surface-container": "#ededfb",
+                    "secondary": "#5c5f60",
+                    "primary": "#003ec7",
+                    "on-surface-variant": "#434656",
+                    "inverse-surface": "#2e303a",
+                    "secondary-container": "#dee0e2",
+                    "status-success": "#10B981",
+                    "background": "#fbf8ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "lg": "24px",
+                    "container-margin": "24px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Rubik", "sans-serif"],
+                    "body-md": ["Rubik", "sans-serif"],
+                    "headline-xl": ["Rubik", "sans-serif"],
+                    "label-md": ["Rubik", "sans-serif"],
+                    "label-sm": ["Rubik", "sans-serif"],
+                    "rubik": ["Rubik", "sans-serif"]
+            },
+            "fontSize": {
+                    "headline-lg": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-xl": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "label-sm": ["14px", {"lineHeight": "1.4", "fontWeight": "300"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Rubik', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-['Rubik']">
+<!-- TopNavBar Component Ref {{DATA:COMPONENTS:COMPONENTS_17}} -->
+<header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-gray-100 dark:border-gray-800 shadow-sm shadow-blue-900/5 docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-6 py-3 max-w-[1280px] mx-auto font-['Rubik'] antialiased">
+<div class="text-2xl font-bold tracking-tighter text-blue-600 dark:text-blue-400">BringIt</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-gray-500 dark:text-gray-400 hover:text-blue-600 font-medium text-sm transition-all duration-200 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-xl px-3 py-1" href="#">גלה</a>
+<a class="text-gray-500 dark:text-gray-400 hover:text-blue-600 font-medium text-sm transition-all duration-200 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-xl px-3 py-1" href="#">בקשות</a>
+<a class="text-gray-500 dark:text-gray-400 hover:text-blue-600 font-medium text-sm transition-all duration-200 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-xl px-3 py-1" href="#">הודעות</a>
+<a class="text-blue-600 dark:text-blue-400 font-bold border-b-2 border-blue-600 pb-1 text-sm" href="#">פרופיל</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-500 hover:bg-gray-50 rounded-xl transition-all duration-200 active:scale-95 active:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="bg-primary-container text-white px-4 py-2 rounded-xl text-sm font-semibold active:scale-95 transition-transform hover:opacity-90">
+                פרסם בקשה
+            </button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-gray-100">
+<img alt="User avatar" data-alt="close-up portrait of a professional man with a friendly smile, clean studio background, soft cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtbEFKkRo4he01oZOVEFsfVcjpqThez3_xAMKwMF4C1zV23MSWOR5J7O7qIBmUvywgguO8Tc_O9a3ggvuMEC77q5M939HwK0Z-s7a9NZanIvug-55q7Md6JY78gIxbTiu4gKL6XLdH2vNneJie9aKJPYFpwoymx1kkHntICTQzni8aCY6RH2eLELRAT05eL-djxo5zXGblVa_ZDMMPdJ0KBA71wrXVRevLet60IhikIQGQHlwkNJUccM4iHq_ZMIA3e3Mt-UO_QSMk"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto px-6 py-10 pb-32">
+<!-- Hero Section / Profile Header -->
+<section class="mb-12">
+<div class="bg-white rounded-xl p-8 shadow-sm border border-slate-100 flex flex-col md:flex-row gap-8 items-center">
+<div class="relative">
+<div class="w-32 h-32 rounded-xl overflow-hidden shadow-lg">
+<img class="w-full h-full object-cover" data-alt="professional headshot of a smiling young man in a blue shirt, high-end corporate photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsw1lEnwrxEpASaV0knOtOImg0UU8wpFt5Vi6ghKH_n7p2trxXKQVnErRt_Eo8Xe2TGlt5Q93Kqf-azq_WUuXuoF8QPyHcxTNYJga7Lbw0uI7i6b5SmhXUgQLvW9xfZst41ro11x-_Uz7SAfWqQ06vU-5rcWlu-yZB6SH0A4sxNvL9W5SA3J2z2WZBlLvqYcNE05qwYiHTt4cvn4pl0O9dZOeyCI9rsags15PnF9lc9QgBqT0T92AcG5apMcC2GHgQtbT0nTpUtrFo"/>
+</div>
+<div class="absolute -bottom-2 -left-2 bg-status-success text-white p-1.5 rounded-full border-4 border-white">
+<span class="material-symbols-outlined text-sm" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="text-center md:text-right flex-1">
+<h1 class="font-headline-xl text-text-primary mb-1">אלכס הנדרסון</h1>
+<p class="font-body-md text-on-secondary-container mb-4">חבר דרגת כסף • הצטרף באוקטובר 2023</p>
+<div class="flex flex-wrap justify-center md:justify-start gap-4">
+<div class="bg-surface-container-low px-4 py-2 rounded-lg">
+<span class="block text-xs text-on-secondary-container font-medium uppercase">מדד אמון</span>
+<span class="font-bold text-lg text-primary">98%</span>
+</div>
+<div class="bg-surface-container-low px-4 py-2 rounded-lg">
+<span class="block text-xs text-on-secondary-container font-medium uppercase">עסקאות</span>
+<span class="font-bold text-lg text-primary">24 עסקאות</span>
+</div>
+<div class="bg-surface-container-low px-4 py-2 rounded-lg">
+<span class="block text-xs text-on-secondary-container font-medium uppercase">קהילה</span>
+<span class="font-bold text-lg text-primary">4.9 ★</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2 w-full md:w-auto">
+<button class="bg-secondary-container text-on-secondary-fixed font-semibold px-6 py-3 rounded-xl active:scale-95 transition-transform hover:bg-slate-200">ערוך פרופיל</button>
+<button class="flex items-center justify-center gap-2 text-primary font-medium px-6 py-2">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+                    הגדרות חשבון
+                </button>
+</div>
+</div>
+</section>
+<!-- Active Deals Section -->
+<section class="space-y-6">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-text-primary">עסקאות פעילות</h2>
+<p class="text-on-secondary-container text-sm">עקוב אחר הבקשות הפעילות שלך בקהילה</p>
+</div>
+<button class="text-primary font-semibold text-sm hover:underline">צפה בהיסטוריה</button>
+</div>
+<!-- Deal Cards List -->
+<div class="space-y-4">
+<!-- Deal 1: Delivered State (Confirmation Needed) -->
+<div class="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden flex flex-col md:flex-row items-center p-4 md:p-6 gap-6 transition-all hover:shadow-md">
+<div class="w-full md:w-24 h-24 bg-slate-50 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="studio shot of bright red athletic sneakers on a white background with clean lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOXXyJ43Xu225VjHncLNaUUAEyn8F0pnGST0quaERVzndzwLMmYne2l6aY_oPdVzpyoopwmqnvdmopdyx5rnrKpjTFEW2HdChAz9HguLVbyUyjyUngdeYziSH9G-Shr9GVSBXPN0UGSqMDG09NezsqhX7txwVAu3RdWXoavYthTed7m9XQCFQDQ6pK3bIjUFcoj_N2WGH-ZHtG8f4-V4u65QYo4c4RFrVYQeBIv4trjuvVglI1IbgpP2OfmH7wN2IJWOIlEusu5Mya"/>
+</div>
+<div class="flex-1 w-full">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-semibold text-lg text-text-primary">נעלי ספורט במהדורה מוגבלת</h3>
+<p class="text-sm text-on-secondary-container">מ: לונדון, בריטניה • אל: ניו יורק, ארה"ב</p>
+</div>
+<span class="font-bold text-xl text-primary">$210.00</span>
+</div>
+<!-- Progress Stepper -->
+<div class="mt-6">
+<div class="flex justify-between text-[10px] uppercase font-bold text-on-secondary-container mb-2 tracking-wider">
+<span class="text-status-success">ממתין</span>
+<span class="text-status-success">שולם (נאמנות)</span>
+<span class="text-status-success">נרכש</span>
+<span class="text-status-success">נמסר</span>
+</div>
+<div class="relative h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="absolute top-0 right-0 h-full bg-status-success w-full rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="w-full md:w-auto">
+<button class="w-full md:w-auto bg-status-success text-white font-bold py-4 px-8 rounded-xl shadow-lg shadow-emerald-100 hover:brightness-105 active:scale-95 transition-all">
+                        אשר קבלה
+                    </button>
+</div>
+</div>
+<!-- Deal 2: Purchased State -->
+<div class="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden flex flex-col md:flex-row items-center p-4 md:p-6 gap-6 transition-all hover:shadow-md">
+<div class="w-full md:w-24 h-24 bg-slate-50 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="minimalist watch with white face and leather strap on a textured gray background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdGCR3aWe-0ZW9EErfD0guvvCfBT6L_n8-_vtPPV_syQhoWTHFHvBEDX7hxZVDYwVpvikyEjGgVSZBg4zsI_W1-4K52UgfNE44lgokuHGDACMuTVTCab0o95SVgQCSSnvW49AIEdn1tfZ6jtWn_dGlG87HyaM3Eyn6GMQmeJek4ajbr43uZNulJdtZnyNMxMfY36vgjBj0B-7psyPRZ8CCiyksq1ySb2_rlTKrMU20xG7SUud4lfbLU9aOkMJIavWUcdPZsh066mK"/>
+</div>
+<div class="flex-1 w-full">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-semibold text-lg text-text-primary">שעון אנלוגי מינימליסטי</h3>
+<p class="text-sm text-on-secondary-container">מ: טוקיו, יפן • אל: ניו יורק, ארה"ב</p>
+</div>
+<span class="font-bold text-xl text-primary">$145.50</span>
+</div>
+<!-- Progress Stepper -->
+<div class="mt-6">
+<div class="flex justify-between text-[10px] uppercase font-bold text-on-secondary-container mb-2 tracking-wider">
+<span class="text-status-success">ממתין</span>
+<span class="text-status-success">שולם (נאמנות)</span>
+<span class="text-status-success">נרכש</span>
+<span class="">נמסר</span>
+</div>
+<div class="relative h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="absolute top-0 right-0 h-full bg-status-success w-[75%] rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="w-full md:w-auto flex flex-col gap-2">
+<button class="w-full md:w-48 bg-slate-100 text-slate-400 font-bold py-4 px-8 rounded-xl cursor-not-allowed">
+                        אשר קבלה
+                    </button>
+</div>
+</div>
+<!-- Deal 3: Paid State -->
+<div class="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden flex flex-col md:flex-row items-center p-4 md:p-6 gap-6 transition-all hover:shadow-md">
+<div class="w-full md:w-24 h-24 bg-slate-50 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="premium leather messenger bag on a rustic wooden floor with warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyX_9f7uwes-7WSFyE6rSmmqDCn5JaY2kr38fXgMn81nHLHhSN4l_G53W28J-CsAikksYWdKsM0mJftPyal7en8o134w0zgkYG6ZgBs4Khyd1h5bUSssU3t5kttA-K88VXmxu4zMYp7nJfAjFB_SRm4egxeX7-HBuyx8L3itaw-zBPBxQf0WK145LONP-bcxm8QO7wZHMCd9Uef9fHTlKS5D8MasThkURG5UknUU5p8lhqLVeInZyeBPfKPDiwoj9HGg_ee_gBljQE"/>
+</div>
+<div class="flex-1 w-full">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-semibold text-lg text-text-primary">תיק עור בעבודת יד</h3>
+<p class="text-sm text-on-secondary-container">מ: פירנצה, איטליה • אל: ניו יורק, ארה"ב</p>
+</div>
+<span class="font-bold text-xl text-primary">$320.00</span>
+</div>
+<!-- Progress Stepper -->
+<div class="mt-6">
+<div class="flex justify-between text-[10px] uppercase font-bold text-on-secondary-container mb-2 tracking-wider">
+<span class="text-status-success">ממתין</span>
+<span class="text-status-success">שולם (נאמנות)</span>
+<span class="">נרכש</span>
+<span class="">נמסר</span>
+</div>
+<div class="relative h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="absolute top-0 right-0 h-full bg-status-success w-[50%] rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="w-full md:w-auto">
+<div class="w-full md:w-48 text-center text-xs font-medium text-on-secondary-container bg-surface-container-low p-3 rounded-lg border border-slate-100">
+                        ממתין לאישור רכישה מהמוביל
+                    </div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Component Ref {{DATA:COMPONENTS:COMPONENTS_17}} -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-white/98 dark:bg-slate-900/98 border-t border-gray-100 dark:border-gray-800 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] md:hidden">
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 hover:text-blue-500 tap-highlight-transparent active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[11px] font-semibold font-['Rubik']">בית</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 hover:text-blue-500 tap-highlight-transparent active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="text-[11px] font-semibold font-['Rubik']">חיפוש</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 hover:text-blue-500 tap-highlight-transparent active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="add_box">add_box</span>
+<span class="text-[11px] font-semibold font-['Rubik']">פרסם</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-500 hover:text-blue-500 tap-highlight-transparent active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-[11px] font-semibold font-['Rubik']">הודעות</span>
+</a>
+<a class="flex flex-col items-center justify-center text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/20 rounded-xl px-3 py-1 tap-highlight-transparent active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[11px] font-semibold font-['Rubik']">פרופיל</span>
+</a>
+</nav>
+<!-- Footer Component Ref {{DATA:COMPONENTS:COMPONENTS_17}} -->
+<footer class="hidden md:block w-full mt-auto bg-gray-50 dark:bg-slate-950 border-t border-gray-200 dark:border-gray-800">
+<div class="max-w-[1280px] mx-auto px-8 py-12 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="font-bold text-gray-900 dark:text-white">BringIt</div>
+<div class="flex gap-8">
+<a class="font-['Rubik'] text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-colors underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-blue-500" href="#">איך זה עובד</a>
+<a class="font-['Rubik'] text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-colors underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-blue-500" href="#">אמון ובטיחות</a>
+<a class="font-['Rubik'] text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-colors underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-blue-500" href="#">עזרה</a>
+<a class="font-['Rubik'] text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-colors underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-blue-500" href="#">תנאים</a>
+</div>
+<p class="font-['Rubik'] text-xs text-gray-500 dark:text-gray-400">© 2024 BringIt. מבוסס על עקרונות הנאמנות.</p>
+</div>
+</footer>
+</body></html>

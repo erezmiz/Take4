@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#fbf8ff",
+                    "on-secondary-container": "#606365",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#952200",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb4a1",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e7e7f5",
+                    "primary-fixed-dim": "#b7c4ff",
+                    "on-surface": "#191b25",
+                    "on-tertiary-fixed": "#3c0800",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f0effe",
+                    "on-tertiary-container": "#ffddd5",
+                    "on-secondary-fixed-variant": "#444749",
+                    "on-primary-fixed-variant": "#0038b6",
+                    "text-primary": "#111827",
+                    "primary-container": "#0052ff",
+                    "outline": "#737688",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#b7c4ff",
+                    "on-secondary": "#ffffff",
+                    "status-error": "#EF4444",
+                    "secondary-fixed": "#e1e2e4",
+                    "outline-variant": "#c3c5d9",
+                    "on-primary-container": "#dfe3ff",
+                    "surface-container-highest": "#e1e1ef",
+                    "surface-dim": "#d9d9e7",
+                    "on-tertiary": "#ffffff",
+                    "accent-warning": "#F59E0B",
+                    "on-secondary-fixed": "#191c1e",
+                    "surface": "#fbf8ff",
+                    "on-background": "#191b25",
+                    "tertiary-fixed": "#ffdbd2",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f3f2ff",
+                    "on-primary-fixed": "#001452",
+                    "border-light": "#E5E7EB",
+                    "surface-main": "#FFFFFF",
+                    "surface-tint": "#004ced",
+                    "surface-variant": "#e1e1ef",
+                    "primary-fixed": "#dde1ff",
+                    "on-tertiary-fixed-variant": "#891e00",
+                    "secondary-fixed-dim": "#c5c6c8",
+                    "tertiary-container": "#bf3003",
+                    "surface-container": "#ededfb",
+                    "secondary": "#5c5f60",
+                    "primary": "#003ec7",
+                    "on-surface-variant": "#434656",
+                    "inverse-surface": "#2e303a",
+                    "secondary-container": "#dee0e2",
+                    "status-success": "#10B981",
+                    "background": "#fbf8ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "12px",
+                    "lg": "12px",
+                    "xl": "16px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "lg": "24px",
+                    "container-margin": "24px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Rubik", "sans-serif"],
+                    "body-md": ["Rubik", "sans-serif"],
+                    "headline-xl": ["Rubik", "sans-serif"],
+                    "label-md": ["Rubik", "sans-serif"],
+                    "label-sm": ["Rubik", "sans-serif"],
+                    "rubik": ["Rubik", "sans-serif"]
+            },
+            "fontSize": {
+                    "headline-lg": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-xl": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "label-sm": ["14px", {"lineHeight": "1.4", "fontWeight": "300"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Rubik', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen font-rubik">
+<!-- TopNavBar -->
+<nav class="bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100 shadow-sm shadow-blue-900/5 transition-all duration-200">
+<div class="flex justify-between items-center w-full px-6 py-3 max-w-[1280px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-blue-600">BringIt</span>
+<div class="hidden md:flex gap-6">
+<a class="text-blue-600 font-medium border-b-2 border-blue-600 pb-1 font-rubik text-sm tracking-wide" href="#">גילוי</a>
+<a class="text-gray-500 hover:text-blue-600 py-1 font-rubik text-sm font-medium tracking-wide transition-all duration-200" href="#">בקשות</a>
+<a class="text-gray-500 hover:text-blue-600 py-1 font-rubik text-sm font-medium tracking-wide transition-all duration-200" href="#">הודעות</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden lg:flex items-center gap-2 bg-primary-container text-on-primary px-5 py-2 rounded-xl font-semibold active:opacity-80 active:scale-95 transition-transform font-rubik">
+                    פרסום בקשה
+                </button>
+<div class="flex items-center gap-2">
+<button class="p-2 transition-all duration-200 hover:bg-gray-50 rounded-xl active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full border-2 border-primary-fixed overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="Close up portrait of a smiling professional man with clean grooming and soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA9PcIotMI1RDtOpWpc9SkXb7p0Dio7JkxBIAHySllXjaxNw4yp2oRlpH_ZkdrnSUV7DpdlgXUqPBmKqu-Kb1Ud2R4PG3BeNtQ_VGoecNKIO_jfhgvtfMGw22WjRwdGXYH2RlEQSZ1Eb8Vmqc6dSaKkU4AI5lS8BQNcmIkr__9jNXO5v3KSuc1O0x4TmnQ3agDCjG4j4jUeAWm1xII2c9-KxntAYoSSSXIVlPPBdihT2OffoVt3hZ6yLLG3a7M7u5dnEzzRbeVVMT9"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-container-margin py-xl pb-32">
+<!-- Hero Search Section -->
+<div class="relative w-full mb-8">
+<div class="w-full h-[240px] md:h-[300px] rounded-[24px] overflow-hidden relative mb-[-40px]">
+<img alt="Travel background" class="w-full h-full object-cover" data-alt="Wide shot of a modern airplane wing above soft white clouds at sunrise with warm orange and pink hues" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9dX2oJhxUo1WJCkI35eh6yq9VBagJHYVu_z6_VGppXQK-aaI9-JBaMCmbSLanfEepEzUJq_1hIkw4R362ecSpZI9nWHGTFV9yAuuLTn6PODfhPWFIGgfoIgBaTTEWPBIFdL5uJ7o_iT3UtVpteAB8m8PlmzL08rlfkbDZ4kAP3jt4_sx0I7mnAcKrLsSaWGtgDQfJn13-ZWC2i0orgky8h_OqqZVRsVBqBYvTvAoDvdbm9ibb3RfxZC_HL-8x3XLqvRUIxfNpt2J_"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-center items-center text-center p-6">
+<h1 class="text-white font-headline-xl text-headline-xl mb-4 drop-shadow-md">הרוויחו כסף מהמקום הפנוי במזוודה</h1>
+</div>
+</div>
+<!-- Enhanced Search Bar -->
+<div class="relative z-10 max-w-4xl mx-auto">
+<div class="bg-white rounded-2xl shadow-xl border border-outline-variant p-2 flex flex-col gap-4">
+<div class="flex items-center gap-2 w-full">
+<div class="flex-1 flex flex-col px-6 py-2 border-slate-100 pr-4">
+<span class="text-[10px] font-bold uppercase tracking-wider text-primary font-rubik">יעדים</span>
+<div class="flex flex-wrap gap-2 items-center mt-1">
+<div class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 border border-blue-100">
+                                    ניו יורק
+                                    <span class="material-symbols-outlined text-[14px] cursor-pointer" data-icon="close">close</span>
+</div>
+<input class="bg-transparent border-none p-0 focus:ring-0 text-slate-900 font-medium placeholder:text-slate-400 font-rubik text-sm flex-1 min-w-[200px]" placeholder="חפשו לפי מדינה, עיר או מספר יעדים..." type="text"/>
+</div>
+</div>
+<button class="bg-[#0052FF] text-white w-12 h-12 rounded-xl flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</div>
+<!-- Filter Bar -->
+<div class="border-t border-slate-100 pt-2 px-4 pb-1 flex flex-wrap items-center gap-4">
+<div class="flex flex-col gap-1">
+<label class="text-[10px] font-bold text-slate-500 uppercase">תגמול (מינימום)</label>
+<select class="text-xs font-medium text-slate-700 bg-slate-50 border-none rounded-lg focus:ring-1 focus:ring-blue-500 py-1.5 pr-8 pl-3">
+<option>הכל</option>
+<option>$20+</option>
+<option>$50+</option>
+<option>$100+</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-[10px] font-bold text-slate-500 uppercase">גודל פריט</label>
+<div class="flex bg-slate-50 p-1 rounded-lg gap-1">
+<button class="px-3 py-1 text-xs rounded-md bg-white shadow-sm border border-slate-200 font-medium text-blue-600">קטן</button>
+<button class="px-3 py-1 text-xs rounded-md text-slate-600 font-medium hover:bg-white/50">בינוני</button>
+<button class="px-3 py-1 text-xs rounded-md text-slate-600 font-medium hover:bg-white/50">גדול</button>
+</div>
+</div>
+<div class="flex items-center gap-3 mr-auto self-end h-10">
+<label class="flex items-center gap-2 cursor-pointer group">
+<div class="relative inline-flex items-center">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-[-16px] rtl:peer-checked:after:translate-x-[-16px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:right-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+</div>
+<span class="text-xs font-medium text-slate-700">שביר</span>
+</label>
+<button class="text-xs font-semibold text-blue-600 hover:bg-blue-50 px-3 py-1.5 rounded-lg transition-colors">
+                                איפוס פילטרים
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section Title -->
+<div class="flex justify-between items-end mb-lg mt-12">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">בקשות פופולריות</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">עזרו לאחרים והרוויחו תגמולים בטיול הבא שלכם</p>
+</div>
+<button class="text-primary font-semibold flex items-center gap-1 hover:underline font-rubik">
+                צפה בהכל <span class="material-symbols-outlined text-sm rotate-180" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Card 1 - Updated with Fragile Badge -->
+<div class="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden border border-slate-50 hover:shadow-lg transition-all duration-300 group">
+<div class="h-48 overflow-hidden relative">
+<img alt="Smart Watch" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Minimalist white smart watch on a soft grey background with clean aesthetic and sharp focus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3x5CGna16BKbF0PH6SE5aMkniV67J5JbfG60g1OhGN_9fu_HGsVzcNSmXxn3FOAajW6BRTytWRwT-OPe5mtYiLd6cY3aI6S8vmp4_5Vt3iCdPPwDeDs6nyhgdVioDKOUdp4XKCcL53FHJJkshqsVOzIpjhT1UjM9bWrqUXD9wHqdbVQ1YxNBGlDaMQK-ThMezCsRzD3kg-2g_SL2jEfB0BrZZkE94C7pVDn70Sd1rQQVu8b9jkVUBmcr1caz_o2LMF_CKynVZfRFr"/>
+<div class="absolute top-3 right-3 flex flex-col gap-2">
+<div class="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] font-bold text-blue-600 shadow-sm font-rubik text-center">ארה"ב</div>
+<div class="bg-amber-100/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-amber-700 shadow-sm font-rubik flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="warning">warning</span>
+                            שביר
+                        </div>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-headline-lg text-[18px] text-on-surface mb-1 truncate">Apple Watch Series 9</h3>
+<div class="flex items-center gap-1 text-slate-500 text-[12px] mb-3 font-rubik">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+                        ניו יורק ← לונדון
+                    </div>
+<div class="flex justify-between items-center pt-3 border-t border-slate-100">
+<div>
+<span class="text-[11px] text-slate-400 block leading-none font-rubik">תגמול מוערך</span>
+<span class="text-primary font-bold text-lg font-rubik">$45.00</span>
+</div>
+<button class="bg-slate-100 hover:bg-primary-container hover:text-white p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden border border-slate-50 hover:shadow-lg transition-all duration-300 group">
+<div class="h-48 overflow-hidden relative">
+<img alt="Red Sneakers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Vibrant red athletic sneaker against a dark background with professional product lighting and high contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWKvsIV2rptbf-dglPthpH1XrHfSX09nrFuyuRtUd3HXR4snMBbRGOsPJY0L2iaZ4Z2obp17UYY3Ma1yYft-AWLV16XGlUuB19YEQYX5qbr4SPm1Qh_gUy31-pFoMpIpZJTwpq8kCY_nXwur65Ss38O3Lcd7Nf2R-hCS-chtRYaCm9xHWGe1vNKr3cdoTyceIOp8gFG0anOZRaWjzUXxYljg4buLsWJRW1KIBrCjd1M7MYJOGuYvU-VgVcTrJ0sg5xpXvd_ok_Vpte"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] font-bold text-blue-600 shadow-sm font-rubik">צרפת</div>
+</div>
+<div class="p-4">
+<h3 class="font-headline-lg text-[18px] text-on-surface mb-1 truncate">נעליים במהדורה מוגבלת</h3>
+<div class="flex items-center gap-1 text-slate-500 text-[12px] mb-3 font-rubik">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+                        פריז ← טוקיו
+                    </div>
+<div class="flex justify-between items-center pt-3 border-t border-slate-100">
+<div>
+<span class="text-[11px] text-slate-400 block leading-none font-rubik">תגמול מוערך</span>
+<span class="text-primary font-bold text-lg font-rubik">$60.00</span>
+</div>
+<button class="bg-slate-100 hover:bg-primary-container hover:text-white p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3 - Updated with Large Badge -->
+<div class="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden border border-slate-50 hover:shadow-lg transition-all duration-300 group">
+<div class="h-48 overflow-hidden relative">
+<img alt="Headphones" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Premium black over-ear headphones resting on a wooden surface with warm atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq0hXfD9GbColQ-KVgUsnrr8udFrdGfQHm5RiS3xttPSs9fGqOQiQsJ27PoWHiF2srKRp6Um6uJkfbKNCFAzmus1QD1-7ktNvoHAHPBesQLiEK1evx5i2Y4siU1dlyGye9DwoDJxTGTms9PtKky9_lwTq8KK8_hxdLRB-KzvM7tm_4iYak8SMbQ_O9BB-O-GyQx-Tuord7UmdTFiBeroysd5xgbifTkHQJQYgmPgcH3GHj_VDr2DvwD5G8F7F8e7Bk0EVHbkLXJPlU"/>
+<div class="absolute top-3 right-3 flex flex-col gap-2">
+<div class="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] font-bold text-blue-600 shadow-sm font-rubik text-center">גרמניה</div>
+<div class="bg-slate-100/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-slate-700 shadow-sm font-rubik flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="inventory_2">inventory_2</span>
+                            גדול
+                        </div>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-headline-lg text-[18px] text-on-surface mb-1 truncate">אוזניות Sony XM5</h3>
+<div class="flex items-center gap-1 text-slate-500 text-[12px] mb-3 font-rubik">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+                        ברלין ← דובאי
+                    </div>
+<div class="flex justify-between items-center pt-3 border-t border-slate-100">
+<div>
+<span class="text-[11px] text-slate-400 block leading-none font-rubik">תגמול מוערך</span>
+<span class="text-primary font-bold text-lg font-rubik">$35.00</span>
+</div>
+<button class="bg-slate-100 hover:bg-primary-container hover:text-white p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden border border-slate-50 hover:shadow-lg transition-all duration-300 group">
+<div class="h-48 overflow-hidden relative">
+<img alt="Skincare" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Luxury skincare bottles on a marble surface with soft light and minimalist composition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpbnJwLAxGkPLVPpjPGpbO0eOBpGAxUz-qUTb24-7_I7DDpGl-wZMaPFh4EeQjDLuET5QyHunoqv3QvnrdEjxVuNx5IkD-x4NNQuR2hIyLl1WG5uDgVeEeaasIMnqIxRu91jGqwPV6GbmUYdKkRfcDfpw5eWhd4iVOvaC06-yhGB-zgbpMG5sz0eH8dSfww30NSmQPMo9prJe_YgT0vjQ7MrKhCPFD8zhimXWAWBd4WOhCWv1M3xBeqN1eR2uvzJpR3qn0rY8GjSuv"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] font-bold text-blue-600 shadow-sm font-rubik">יפן</div>
+</div>
+<div class="p-4">
+<h3 class="font-headline-lg text-[18px] text-on-surface mb-1 truncate">סט טיפוח Tatcha Dewy</h3>
+<div class="flex items-center gap-1 text-slate-500 text-[12px] mb-3 font-rubik">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+                        טוקיו ← סידני
+                    </div>
+<div class="flex justify-between items-center pt-3 border-t border-slate-100">
+<div>
+<span class="text-[11px] text-slate-400 block leading-none font-rubik">תגמול מוערך</span>
+<span class="text-primary font-bold text-lg font-rubik">$25.00</span>
+</div>
+<button class="bg-slate-100 hover:bg-primary-container hover:text-white p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-24 left-6 md:bottom-8 md:left-10 bg-[#0052FF] text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center z-40 active:scale-90 transition-all duration-200 hover:shadow-blue-500/40">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+</button>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-white/98 fixed bottom-0 left-0 w-full z-50 border-t border-gray-100 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex justify-around items-center px-4 pb-6 pt-2">
+<a class="flex flex-col items-center justify-center text-blue-600 bg-blue-50/50 rounded-xl px-3 py-1 transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[11px] font-semibold font-rubik">בית</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400 hover:text-blue-500 transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="text-[11px] font-semibold font-rubik">חיפוש</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400 hover:text-blue-500 transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="add_box">add_box</span>
+<span class="text-[11px] font-semibold font-rubik">פרסום</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400 hover:text-blue-500 transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-[11px] font-semibold font-rubik">הודעות</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400 hover:text-blue-500 transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[11px] font-semibold font-rubik">פרופיל</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-gray-50 border-t border-gray-200">
+<div class="max-w-[1280px] mx-auto px-8 py-12 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex flex-col gap-2">
+<span class="font-bold text-gray-900 text-lg">BringIt</span>
+<p class="font-rubik text-xs text-gray-500">© 2024 BringIt. נבנה על פי עקרונות הנאמנות.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-rubik text-xs text-gray-500 hover:text-blue-600 transition-colors underline underline-offset-4" href="#">מדיניות פרטיות</a>
+<a class="font-rubik text-xs text-gray-500 hover:text-blue-600 transition-colors underline underline-offset-4" href="#">תנאי שימוש</a>
+<a class="font-rubik text-xs text-gray-500 hover:text-blue-600 transition-colors underline underline-offset-4" href="#">מרכז בטיחות</a>
+<a class="font-rubik text-xs text-gray-500 hover:text-blue-600 transition-colors underline underline-offset-4" href="#">תמיכה בעברית</a>
+</div>
+</div>
+</footer>
+</body></html>
