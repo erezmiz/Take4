@@ -1,0 +1,10 @@
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-background);
+}
+
+.landing-main {
+  flex: 1;
+}
