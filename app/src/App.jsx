@@ -2,10 +2,11 @@ import { useState } from 'react';
 import LandingPage from './pages/LandingPage';
 import DashboardPage from './pages/DashboardPage';
 import ProductPage from './pages/ProductPage';
+import ChatPage from './pages/ChatPage';
 import './App.css';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('product');
+  const [currentPage, setCurrentPage] = useState('chat');
 
   const renderPage = () => {
     switch (currentPage) {
@@ -13,6 +14,8 @@ function App() {
         return <DashboardPage onNavigate={setCurrentPage} />;
       case 'product':
         return <ProductPage onNavigate={setCurrentPage} />;
+      case 'chat':
+        return <ChatPage onNavigate={setCurrentPage} />;
       case 'landing':
       default:
         return <LandingPage onNavigate={setCurrentPage} />;
