@@ -5,10 +5,10 @@ import BenefitsSection from '../components/BenefitsSection';
 import ActionSection from '../components/ActionSection';
 import './LandingPage.css';
 
-export default function LandingPage() {
+export default function LandingPage({ onNavigate }) {
   return (
     <div className="landing-page" dir="rtl">
-      <Navbar />
+      <Navbar onNavigate={onNavigate} />
       <main className="landing-main">
         <GallerySection />
         <BenefitsSection />

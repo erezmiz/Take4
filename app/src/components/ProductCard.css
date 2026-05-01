@@ -1,0 +1,159 @@
+.product-card {
+  background-color: var(--color-surface-main);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-border-light);
+  overflow: hidden;
+  transition: all 300ms ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  position: relative;
+  height: 192px;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+.product-badges {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.country-badge {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: 9999px;
+  font-size: var(--font-size-label-sm);
+  font-weight: 700;
+  color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-family-primary);
+  text-align: center;
+}
+
+.product-badge {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-family-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.badge-fragile {
+  background-color: rgba(245, 158, 11, 0.9);
+  color: #92400e;
+}
+
+.badge-large {
+  background-color: rgba(226, 232, 240, 0.9);
+  color: #334155;
+}
+
+.badge-icon {
+  display: inline-block;
+}
+
+.product-content {
+  padding: var(--spacing-md);
+}
+
+.product-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-on-background);
+  margin: 0 0 var(--spacing-sm) 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-family-primary);
+}
+
+.product-route {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-label-sm);
+  color: #64748b;
+  margin-bottom: var(--spacing-md);
+  font-family: var(--font-family-primary);
+}
+
+.route-icon {
+  font-size: 14px;
+}
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.reward-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.reward-label {
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1;
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-family-primary);
+}
+
+.reward-value {
+  font-size: var(--font-size-body-md);
+  font-weight: 700;
+  color: var(--color-primary);
+  font-family: var(--font-family-primary);
+}
+
+.add-button {
+  background-color: var(--color-surface-container-low);
+  border: none;
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-button:hover {
+  background-color: var(--color-primary-container);
+  color: white;
+}
+
+.add-button:active {
+  transform: scale(0.95);
+}

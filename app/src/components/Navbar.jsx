@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import './Navbar.css';
 
-export default function Navbar() {
+export default function Navbar({ onNavigate }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className="navbar">
       <nav className="nav-content">
-        <div className="logo">BringIt</div>
+        <div className="logo" onClick={() => onNavigate && onNavigate('landing')} style={{ cursor: 'pointer' }}>BringIt</div>
         
         <div className={`desktop-links ${isMenuOpen ? 'mobile-menu-open' : ''}`}>
-          <a href="#" className="nav-link active">גילוי</a>
-          <a href="#" className="nav-link">בקשות</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('landing'); }} className="nav-link active">גילוי</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('dashboard'); }} className="nav-link">בקשות</a>
           <a href="#" className="nav-link">קהילה</a>
           <a href="#" className="nav-link">בטיחות</a>
         </div>
