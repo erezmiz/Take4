@@ -1,26 +1,47 @@
 import './UploadSection.css';
 
-export default function UploadSection() {
+export default function UploadSection({ file, onFileChange }) {
+  const previewUrl = file ? URL.createObjectURL(file) : null;
+
   return (
     <div className="upload-section-container">
       <label className="input-label">תמונת מוצר</label>
       <div className="upload-grid">
-        <div className="drop-zone">
-          <span className="material-symbols-outlined">cloud_upload</span>
-          <p className="drop-zone-text">לחצו להעלאה או גררו לכאן</p>
-          <p className="drop-zone-hint">PNG, JPG, או WEBP עד 10MB</p>
-          <input type="file" className="file-input" />
-        </div>
-        <div className="preview-zone">
-          <img 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtXC4wi3Fpo293HLg6nI9CMt_DQ4ZVKVBpPpHlqGitVejb9Za40U0Rgp9DaeBLUWAmwhx7pHeecG8a3v46XZ5KHRenAnaC3q4fk-sZB34g-a5oMhAxpqfkAo2FDwar2ger9wAlZaRQcFq6ZenRHIma8bZHjfghuxqStJM_LuaAQA-auP6BMms1K1XAYypcIghFaA6KnPF-ex8vbfMkQnuguN9VCCpVFQrxIaTxaI4nzPGzP1CIynd9pQIwwLSNejnjpI1QzKXGJ7LT" 
-            alt="Product Example" 
-            className="preview-image" 
+
+        <div className={`drop-zone ${file ? 'drop-zone--selected' : ''}`}>
+          <span className="material-symbols-outlined">
+            {file ? 'check_circle' : 'cloud_upload'}
+          </span>
+          {file ? (
+            <p className="drop-zone-text">{file.name}</p>
+          ) : (
+            <>
+              <p className="drop-zone-text">לחצו להעלאה או גררו לכאן</p>
+              <p className="drop-zone-hint">PNG, JPG, או WEBP עד 10MB</p>
+            </>
+          )}
+          <input
+            type="file"
+            className="file-input"
+            accept="image/png,image/jpeg,image/webp"
+            onChange={(e) => onFileChange(e.target.files[0] ?? null)}
           />
-          <div className="preview-overlay">
-            תצוגה מקדימה תופיע כאן
-          </div>
         </div>
+
+        <div className="preview-zone">
+          {previewUrl ? (
+            <>
+              <img src={previewUrl} alt="תצוגה מקדימה" className="preview-image" />
+              <div className="preview-overlay">תצוגה מקדימה</div>
+            </>
+          ) : (
+            <div className="preview-placeholder">
+              <span className="material-symbols-outlined">image</span>
+              <span>תצוגה מקדימה תופיע כאן</span>
+            </div>
+          )}
+        </div>
+
       </div>
     </div>
   );

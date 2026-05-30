@@ -66,11 +66,11 @@ export default function ProductsSection() {
               key={product.id}
               image={product.image_url}
               title={product.title}
-              country={product.country}
-              origin={product.origin}
-              destination={product.destination}
-              reward={product.reward ?? product.max_price ?? 0}
-              badges={product.badges ?? []}
+              country={product.destination_country}
+              origin={null}
+              destination={product.destination_country}
+              reward={product.max_price ?? 0}
+              badges={[]}
             />
           ))}
         </div>
