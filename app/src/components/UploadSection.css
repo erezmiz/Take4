@@ -49,6 +49,15 @@
   color: var(--color-status-success);
 }
 
+.drop-zone--existing {
+  border-color: var(--color-primary);
+  background-color: rgba(0, 62, 199, 0.04);
+}
+
+.drop-zone--existing .material-symbols-outlined {
+  color: var(--color-primary);
+}
+
 .drop-zone .material-symbols-outlined {
   color: var(--color-primary);
   font-size: 36px;

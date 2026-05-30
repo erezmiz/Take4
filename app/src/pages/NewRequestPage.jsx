@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../context/AuthContext';
 import UploadSection from '../components/UploadSection';
@@ -8,6 +8,8 @@ import './NewRequestPage.css';
 export default function NewRequestPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const { id } = useParams();
+  const isEditMode = Boolean(id);
 
   const [productName, setProductName] = useState('');
   const [buyLink, setBuyLink] = useState('');
@@ -15,8 +17,26 @@ export default function NewRequestPage() {
   const [destination, setDestination] = useState('');
   const [deliverPay, setDeliverPay] = useState('');
   const [imageFile, setImageFile] = useState(null);
+  const [existingImageUrl, setExistingImageUrl] = useState(null);
+  const [loadingData, setLoadingData] = useState(isEditMode);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (!isEditMode) return;
+    supabase.from('requests').select('*').eq('id', id).single()
+      .then(({ data }) => {
+        if (data) {
+          setProductName(data.title || '');
+          setBuyLink(data.product_url || '');
+          setMaxPrice(data.max_price != null ? String(data.max_price) : '');
+          setDestination(data.destination_country || '');
+          setDeliverPay(data.deliver_pay != null ? String(data.deliver_pay) : '');
+          setExistingImageUrl(data.image_url || null);
+        }
+        setLoadingData(false);
+      });
+  }, [id, isEditMode]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +44,7 @@ export default function NewRequestPage() {
     setSubmitting(true);
 
     try {
-      let imageUrl = null;
+      let imageUrl = existingImageUrl;
 
       if (imageFile) {
         const ext = imageFile.name.split('.').pop();
@@ -33,7 +53,6 @@ export default function NewRequestPage() {
           .from('request-images')
           .upload(path, imageFile);
         if (uploadError) throw uploadError;
-
         const { data: urlData } = supabase.storage
           .from('request-images')
           .getPublicUrl(path);
@@ -41,21 +60,38 @@ export default function NewRequestPage() {
       }
 
       const now = new Date().toISOString();
-      const { error: insertError } = await supabase.from('requests').insert({
-        user_id: user.id,
-        title: productName,
-        product_url: buyLink || null,
-        max_price: maxPrice ? parseFloat(maxPrice) : null,
-        deliver_pay: deliverPay ? parseFloat(deliverPay) : null,
-        destination_country: destination,
-        image_url: imageUrl,
-        status: 'new',
-        created_at: now,
-        updated_at: now,
-      });
-      if (insertError) throw insertError;
 
-      navigate('/dashboard');
+      if (isEditMode) {
+        const { error: updateError } = await supabase
+          .from('requests')
+          .update({
+            title: productName,
+            product_url: buyLink || null,
+            max_price: maxPrice ? parseFloat(maxPrice) : null,
+            deliver_pay: deliverPay ? parseFloat(deliverPay) : null,
+            destination_country: destination,
+            image_url: imageUrl,
+            updated_at: now,
+          })
+          .eq('id', id);
+        if (updateError) throw updateError;
+        navigate(`/product/${id}`);
+      } else {
+        const { error: insertError } = await supabase.from('requests').insert({
+          user_id: user.id,
+          title: productName,
+          product_url: buyLink || null,
+          max_price: maxPrice ? parseFloat(maxPrice) : null,
+          deliver_pay: deliverPay ? parseFloat(deliverPay) : null,
+          destination_country: destination,
+          image_url: imageUrl,
+          status: 'new',
+          created_at: now,
+          updated_at: now,
+        });
+        if (insertError) throw insertError;
+        navigate('/dashboard');
+      }
     } catch (err) {
       setError(err.message || 'אירעה שגיאה. אנא נסה שנית.');
     } finally {
@@ -63,18 +99,29 @@ export default function NewRequestPage() {
     }
   };
 
+  if (loadingData) {
+    return (
+      <div dir="rtl" className="new-request-loading">
+        <p>טוען נתונים...</p>
+      </div>
+    );
+  }
+
   return (
     <div dir="rtl">
 
       <main className="new-request-main">
-        <div className="back-navigation" onClick={() => navigate('/dashboard')}>
+        <div
+          className="back-navigation"
+          onClick={() => navigate(isEditMode ? `/product/${id}` : '/dashboard')}
+        >
           <span className="material-symbols-outlined">arrow_forward</span>
-          <span>חזרה לבקשות</span>
+          <span>{isEditMode ? 'חזרה לבקשה' : 'חזרה לבקשות'}</span>
         </div>
 
         <section className="form-section">
           <div className="form-header">
-            <h1>יצירת בקשה חדשה</h1>
+            <h1>{isEditMode ? 'עריכת בקשה' : 'יצירת בקשה חדשה'}</h1>
             <p>ספרו לנו מה אתם צריכים ואיפה אתם רוצים לקבל את זה.</p>
           </div>
 
@@ -123,7 +170,9 @@ export default function NewRequestPage() {
             </div>
 
             <div className="input-group">
-              <label htmlFor="deliver-pay">תגמול למשלוח ($) <span className="label-optional">(אופציונלי)</span></label>
+              <label htmlFor="deliver-pay">
+                תגמול למשלוח ($) <span className="label-optional">(אופציונלי)</span>
+              </label>
               <div className="input-with-icon">
                 <span className="material-symbols-outlined">paid</span>
                 <input
@@ -152,16 +201,20 @@ export default function NewRequestPage() {
               </div>
             </div>
 
-            <UploadSection file={imageFile} onFileChange={setImageFile} />
+            <UploadSection
+              file={imageFile}
+              onFileChange={setImageFile}
+              existingUrl={existingImageUrl}
+            />
 
             {error && <p className="form-error">{error}</p>}
 
             <div className="submit-section">
               <button type="submit" className="save-button" disabled={submitting}>
                 <span className="material-symbols-outlined">
-                  {submitting ? 'hourglass_empty' : 'save'}
+                  {submitting ? 'hourglass_empty' : isEditMode ? 'update' : 'save'}
                 </span>
-                {submitting ? 'שומר...' : 'שמירת בקשה'}
+                {submitting ? 'שומר...' : isEditMode ? 'עדכון בקשה' : 'שמירת בקשה'}
               </button>
               <p className="terms-text">
                 בלחיצה על "שמירה", אתם מסכימים ל<a href="#">תנאי השימוש</a> ול<a href="#">כללי הקהילה</a>.

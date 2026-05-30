@@ -1,19 +1,96 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
 import './ProductDetails.css';
 
-export default function ProductDetails({ request }) {
+export default function ProductDetails({ request, isOwner }) {
+  const navigate = useNavigate();
   const { title, destination_country, max_price, deliver_pay, product_url, status } = request;
+
+  const [confirming, setConfirming] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState('');
+
+  const handleDelete = async () => {
+    setDeleting(true);
+    setDeleteError('');
+    try {
+      const { error: dealsError } = await supabase
+        .from('deals')
+        .delete()
+        .eq('request_id', request.id);
+      if (dealsError) throw dealsError;
+
+      const { error: requestError } = await supabase
+        .from('requests')
+        .delete()
+        .eq('id', request.id);
+      if (requestError) throw requestError;
+
+      navigate('/dashboard');
+    } catch (err) {
+      setDeleteError(err.message || 'שגיאה במחיקה. אנא נסה שנית.');
+      setDeleting(false);
+      setConfirming(false);
+    }
+  };
 
   return (
     <div className="details-container">
 
       <div className="header-info">
-        <h1 className="product-title">{title}</h1>
+        <div className="header-title-row">
+          <h1 className="product-title">{title}</h1>
+          {isOwner && (
+            <div className="owner-actions">
+              <button
+                className="edit-request-btn"
+                onClick={() => navigate(`/new-request/${request.id}`)}
+              >
+                <span className="material-symbols-outlined">edit</span>
+                עריכה
+              </button>
+              <button
+                className="delete-request-btn"
+                onClick={() => setConfirming(true)}
+              >
+                <span className="material-symbols-outlined">delete</span>
+                מחיקה
+              </button>
+            </div>
+          )}
+        </div>
         {destination_country && (
           <p className="product-destination">
             יעד למסירה: <span className="location">{destination_country}</span>
           </p>
         )}
       </div>
+
+      {confirming && (
+        <div className="delete-confirm-banner">
+          <p className="delete-confirm-text">
+            האם למחוק את הבקשה? פעולה זו תמחק גם את כל העסקאות הקשורות ולא ניתנת לביטול.
+          </p>
+          {deleteError && <p className="delete-error">{deleteError}</p>}
+          <div className="delete-confirm-actions">
+            <button
+              className="delete-confirm-yes"
+              onClick={handleDelete}
+              disabled={deleting}
+            >
+              {deleting ? 'מוחק...' : 'כן, מחק'}
+            </button>
+            <button
+              className="delete-confirm-cancel"
+              onClick={() => { setConfirming(false); setDeleteError(''); }}
+              disabled={deleting}
+            >
+              ביטול
+            </button>
+          </div>
+        </div>
+      )}
 
       {destination_country && (
         <div className="route-section">

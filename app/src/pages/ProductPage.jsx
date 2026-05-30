@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
+import { useAuth } from '../context/AuthContext';
 import ImageGallery from '../components/ImageGallery';
 import ProductDetails from '../components/ProductDetails';
 import './ProductPage.css';
@@ -8,6 +9,7 @@ import './ProductPage.css';
 export default function ProductPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [request, setRequest] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -55,7 +57,10 @@ export default function ProductPage() {
         </button>
         <div className="product-grid">
           <div className="details-column">
-            <ProductDetails request={request} />
+            <ProductDetails
+              request={request}
+              isOwner={user?.id === request.user_id}
+            />
           </div>
           <div className="gallery-column">
             <ImageGallery imageUrl={request.image_url} title={request.title} />

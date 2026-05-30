@@ -19,6 +19,7 @@ const router = createBrowserRouter([
       { path: 'product/:id', element: <ProductPage /> },
       { path: 'chat', element: <ChatPage /> },
       { path: 'new-request', element: <NewRequestPage /> },
+      { path: 'new-request/:id', element: <NewRequestPage /> },
       { path: 'profile', element: <ProfilePage /> },
       { path: 'auth', element: <AuthPage /> },
     ],

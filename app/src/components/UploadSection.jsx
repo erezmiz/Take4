@@ -1,19 +1,24 @@
 import './UploadSection.css';
 
-export default function UploadSection({ file, onFileChange }) {
-  const previewUrl = file ? URL.createObjectURL(file) : null;
+export default function UploadSection({ file, onFileChange, existingUrl }) {
+  const previewUrl = file ? URL.createObjectURL(file) : existingUrl;
 
   return (
     <div className="upload-section-container">
       <label className="input-label">תמונת מוצר</label>
       <div className="upload-grid">
 
-        <div className={`drop-zone ${file ? 'drop-zone--selected' : ''}`}>
+        <div className={`drop-zone ${file ? 'drop-zone--selected' : existingUrl ? 'drop-zone--existing' : ''}`}>
           <span className="material-symbols-outlined">
-            {file ? 'check_circle' : 'cloud_upload'}
+            {file ? 'check_circle' : existingUrl ? 'image' : 'cloud_upload'}
           </span>
           {file ? (
             <p className="drop-zone-text">{file.name}</p>
+          ) : existingUrl ? (
+            <>
+              <p className="drop-zone-text">תמונה קיימת</p>
+              <p className="drop-zone-hint">לחצו להחלפת התמונה</p>
+            </>
           ) : (
             <>
               <p className="drop-zone-text">לחצו להעלאה או גררו לכאן</p>

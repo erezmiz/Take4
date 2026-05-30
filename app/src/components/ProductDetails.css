@@ -17,6 +17,144 @@
   gap: var(--spacing-xs);
 }
 
+.header-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.owner-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.edit-request-btn,
+.delete-request-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-full);
+  background: none;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 200ms ease;
+  white-space: nowrap;
+}
+
+.edit-request-btn {
+  border: 1.5px solid var(--color-outline-variant);
+  color: var(--color-on-surface-variant);
+}
+
+.edit-request-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: rgba(0, 62, 199, 0.05);
+}
+
+.delete-request-btn {
+  border: 1.5px solid var(--color-outline-variant);
+  color: var(--color-on-surface-variant);
+}
+
+.delete-request-btn:hover {
+  border-color: var(--color-error);
+  color: var(--color-error);
+  background-color: var(--color-error-container);
+}
+
+.edit-request-btn .material-symbols-outlined,
+.delete-request-btn .material-symbols-outlined {
+  font-size: 16px;
+}
+
+.edit-request-btn:active,
+.delete-request-btn:active {
+  transform: scale(0.96);
+}
+
+/* ── Delete confirmation banner ── */
+.delete-confirm-banner {
+  background-color: var(--color-error-container);
+  border: 1px solid var(--color-error);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  animation: fadeIn 150ms ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.delete-confirm-text {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label-md);
+  color: var(--color-on-error-container);
+  font-weight: 500;
+  margin: 0;
+}
+
+.delete-error {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label-sm);
+  color: var(--color-error);
+  font-weight: 600;
+  margin: 0;
+}
+
+.delete-confirm-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.delete-confirm-yes,
+.delete-confirm-cancel {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label-md);
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 200ms ease;
+}
+
+.delete-confirm-yes {
+  background-color: var(--color-error);
+  color: var(--color-on-error);
+}
+
+.delete-confirm-yes:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.delete-confirm-cancel {
+  background-color: var(--color-surface-main);
+  color: var(--color-on-surface);
+  border: 1px solid var(--color-outline-variant);
+}
+
+.delete-confirm-cancel:hover:not(:disabled) {
+  background-color: var(--color-surface-container);
+}
+
+.delete-confirm-yes:disabled,
+.delete-confirm-cancel:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .product-title {
   font-size: var(--font-size-heading-xl);
   font-weight: 700;
