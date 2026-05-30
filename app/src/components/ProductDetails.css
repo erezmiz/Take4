@@ -196,6 +196,12 @@
   gap: var(--spacing-sm);
 }
 
+.route-arrow {
+  font-size: var(--font-size-label-md);
+  color: var(--color-outline);
+  margin: 0 2px;
+}
+
 .route-dot {
   width: 12px;
   height: 12px;
@@ -232,6 +238,14 @@
   font-size: var(--font-size-label-sm);
   font-weight: 500;
   margin: 0;
+}
+
+.bento-amount--sm {
+  font-size: var(--font-size-body-md);
+}
+
+.bento-fragile {
+  color: var(--color-status-warning);
 }
 
 .bento-amount {

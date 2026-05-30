@@ -5,7 +5,13 @@ import './ProductDetails.css';
 
 export default function ProductDetails({ request, isOwner }) {
   const navigate = useNavigate();
-  const { title, destination_country, max_price, deliver_pay, product_url, status } = request;
+  const {
+    title, destination_country, meet_deliver,
+    max_price, deliver_pay, product_url, status,
+    broken, size,
+  } = request;
+
+  const sizeLabel = { small: 'קטן', medium: 'בינוני', large: 'גדול' };
 
   const [confirming, setConfirming] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -62,7 +68,12 @@ export default function ProductDetails({ request, isOwner }) {
         </div>
         {destination_country && (
           <p className="product-destination">
-            יעד למסירה: <span className="location">{destination_country}</span>
+            יעד הרכישה: <span className="location">{destination_country}</span>
+          </p>
+        )}
+        {meet_deliver && (
+          <p className="product-destination">
+            יעד המסירה: <span className="location">{meet_deliver}</span>
           </p>
         )}
       </div>
@@ -98,6 +109,12 @@ export default function ProductDetails({ request, isOwner }) {
           <div className="route-track">
             <span className="route-dot" />
             <span className="route-city">{destination_country}</span>
+            {meet_deliver && (
+              <>
+                <span className="route-arrow">←</span>
+                <span className="route-city">{meet_deliver}</span>
+              </>
+            )}
           </div>
         </div>
       )}
@@ -113,6 +130,18 @@ export default function ProductDetails({ request, isOwner }) {
           <p className="bento-label">מחיר מקסימלי</p>
           <p className="bento-amount">
             {max_price != null ? `$${Number(max_price).toFixed(2)}` : '—'}
+          </p>
+        </div>
+        <div className="bento-item">
+          <p className="bento-label">שביר</p>
+          <p className={`bento-amount bento-amount--sm ${broken ? 'bento-fragile' : ''}`}>
+            {broken ? 'כן ⚠️' : 'לא'}
+          </p>
+        </div>
+        <div className="bento-item">
+          <p className="bento-label">גודל חבילה</p>
+          <p className="bento-amount bento-amount--sm">
+            {size ? sizeLabel[size] ?? size : '—'}
           </p>
         </div>
       </div>

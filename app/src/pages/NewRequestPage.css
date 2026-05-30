@@ -52,6 +52,10 @@
   gap: var(--spacing-lg);
 }
 
+.label-required {
+  color: var(--color-error);
+}
+
 .label-optional {
   font-weight: 400;
   color: var(--color-on-surface-variant);
@@ -114,6 +118,73 @@
 
 .input-with-icon input {
   padding-right: 40px;
+}
+
+/* ── Toggle (שביר) ── */
+.toggle-group {
+  display: flex;
+  gap: 0;
+  border: 1.5px solid var(--color-outline-variant);
+  border-radius: var(--border-radius-input);
+  overflow: hidden;
+}
+
+.toggle-btn {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  background: var(--color-surface-container-lowest);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label-md);
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.toggle-btn:first-child {
+  border-left: 1px solid var(--color-outline-variant);
+}
+
+.toggle-btn--active {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.toggle-btn:not(.toggle-btn--active):hover {
+  background-color: var(--color-surface-container);
+}
+
+/* ── Size selector ── */
+.size-group {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.size-btn {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-xs);
+  border: 1.5px solid var(--color-outline-variant);
+  border-radius: var(--border-radius-lg);
+  background: var(--color-surface-container-lowest);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label-md);
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+  cursor: pointer;
+  transition: all 150ms ease;
+  text-align: center;
+}
+
+.size-btn--active {
+  border-color: var(--color-primary);
+  background-color: rgba(0, 62, 199, 0.07);
+  color: var(--color-primary);
+}
+
+.size-btn:not(.size-btn--active):hover {
+  border-color: var(--color-outline);
+  background-color: var(--color-surface-container);
 }
 
 .form-error {

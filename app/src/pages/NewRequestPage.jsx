@@ -3,7 +3,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../context/AuthContext';
 import UploadSection from '../components/UploadSection';
+import CitySelect from '../components/CitySelect';
 import './NewRequestPage.css';
+
+const SIZE_OPTIONS = [
+  { value: 'small',  label: 'קטן' },
+  { value: 'medium', label: 'בינוני' },
+  { value: 'large',  label: 'גדול' },
+];
 
 export default function NewRequestPage() {
   const { user } = useAuth();
@@ -11,16 +18,19 @@ export default function NewRequestPage() {
   const { id } = useParams();
   const isEditMode = Boolean(id);
 
-  const [productName, setProductName] = useState('');
-  const [buyLink, setBuyLink] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
-  const [destination, setDestination] = useState('');
-  const [deliverPay, setDeliverPay] = useState('');
-  const [imageFile, setImageFile] = useState(null);
-  const [existingImageUrl, setExistingImageUrl] = useState(null);
-  const [loadingData, setLoadingData] = useState(isEditMode);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState('');
+  const [productName,      setProductName]      = useState('');
+  const [purchaseCity,     setPurchaseCity]      = useState('');
+  const [meetDeliver,      setMeetDeliver]       = useState('');
+  const [buyLink,          setBuyLink]           = useState('');
+  const [maxPrice,         setMaxPrice]          = useState('');
+  const [deliverPay,       setDeliverPay]        = useState('');
+  const [isFragile,        setIsFragile]         = useState(false);
+  const [packageSize,      setPackageSize]       = useState('');
+  const [imageFile,        setImageFile]         = useState(null);
+  const [existingImageUrl, setExistingImageUrl]  = useState(null);
+  const [loadingData,      setLoadingData]       = useState(isEditMode);
+  const [submitting,       setSubmitting]        = useState(false);
+  const [error,            setError]             = useState('');
 
   useEffect(() => {
     if (!isEditMode) return;
@@ -28,10 +38,13 @@ export default function NewRequestPage() {
       .then(({ data }) => {
         if (data) {
           setProductName(data.title || '');
+          setPurchaseCity(data.destination_country || '');
+          setMeetDeliver(data.meet_deliver || '');
           setBuyLink(data.product_url || '');
           setMaxPrice(data.max_price != null ? String(data.max_price) : '');
-          setDestination(data.destination_country || '');
           setDeliverPay(data.deliver_pay != null ? String(data.deliver_pay) : '');
+          setIsFragile(data.broken || false);
+          setPackageSize(data.size || '');
           setExistingImageUrl(data.image_url || null);
         }
         setLoadingData(false);
@@ -60,34 +73,30 @@ export default function NewRequestPage() {
       }
 
       const now = new Date().toISOString();
+      const payload = {
+        title:              productName,
+        destination_country: purchaseCity,
+        meet_deliver:       meetDeliver || null,
+        product_url:        buyLink || null,
+        max_price:          maxPrice ? parseFloat(maxPrice) : null,
+        deliver_pay:        deliverPay ? parseFloat(deliverPay) : null,
+        broken:             isFragile,
+        size:               packageSize || null,
+        image_url:          imageUrl,
+        updated_at:         now,
+      };
 
       if (isEditMode) {
         const { error: updateError } = await supabase
-          .from('requests')
-          .update({
-            title: productName,
-            product_url: buyLink || null,
-            max_price: maxPrice ? parseFloat(maxPrice) : null,
-            deliver_pay: deliverPay ? parseFloat(deliverPay) : null,
-            destination_country: destination,
-            image_url: imageUrl,
-            updated_at: now,
-          })
-          .eq('id', id);
+          .from('requests').update(payload).eq('id', id);
         if (updateError) throw updateError;
         navigate(`/product/${id}`);
       } else {
         const { error: insertError } = await supabase.from('requests').insert({
-          user_id: user.id,
-          title: productName,
-          product_url: buyLink || null,
-          max_price: maxPrice ? parseFloat(maxPrice) : null,
-          deliver_pay: deliverPay ? parseFloat(deliverPay) : null,
-          destination_country: destination,
-          image_url: imageUrl,
-          status: 'new',
+          ...payload,
+          user_id:    user.id,
+          status:     'new',
           created_at: now,
-          updated_at: now,
         });
         if (insertError) throw insertError;
         navigate('/dashboard');
@@ -109,7 +118,6 @@ export default function NewRequestPage() {
 
   return (
     <div dir="rtl">
-
       <main className="new-request-main">
         <div
           className="back-navigation"
@@ -126,6 +134,8 @@ export default function NewRequestPage() {
           </div>
 
           <form className="request-form" onSubmit={handleSubmit}>
+
+            {/* שם המוצר */}
             <div className="input-group">
               <label htmlFor="product-name">שם המוצר</label>
               <input
@@ -138,9 +148,36 @@ export default function NewRequestPage() {
               />
             </div>
 
+            {/* יעד הרכישה */}
+            <div className="input-group">
+              <label>יעד הרכישה <span className="label-required">*</span></label>
+              <CitySelect
+                value={purchaseCity}
+                onChange={setPurchaseCity}
+                placeholder="מהיכן לקנות? חפש עיר..."
+              />
+            </div>
+
+            {/* יעד מסירה */}
+            <div className="input-group">
+              <label htmlFor="meet-deliver">יעד למסירה</label>
+              <div className="input-with-icon">
+                <span className="material-symbols-outlined">location_on</span>
+                <input
+                  id="meet-deliver"
+                  type="text"
+                  placeholder="עיר, מדינה"
+                  value={meetDeliver}
+                  onChange={(e) => setMeetDeliver(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* קישור + תקציב */}
             <div className="form-grid">
               <div className="input-group">
-                <label htmlFor="buy-link">קישור לקנייה (אופציונלי)</label>
+                <label htmlFor="buy-link">קישור לקנייה <span className="label-optional">(אופציונלי)</span></label>
                 <div className="input-with-icon">
                   <span className="material-symbols-outlined">link</span>
                   <input
@@ -169,6 +206,7 @@ export default function NewRequestPage() {
               </div>
             </div>
 
+            {/* תגמול למשלוח */}
             <div className="input-group">
               <label htmlFor="deliver-pay">
                 תגמול למשלוח ($) <span className="label-optional">(אופציונלי)</span>
@@ -186,18 +224,42 @@ export default function NewRequestPage() {
               </div>
             </div>
 
-            <div className="input-group">
-              <label htmlFor="destination">יעד למסירה</label>
-              <div className="input-with-icon">
-                <span className="material-symbols-outlined">location_on</span>
-                <input
-                  id="destination"
-                  type="text"
-                  placeholder="עיר, מדינה"
-                  value={destination}
-                  onChange={(e) => setDestination(e.target.value)}
-                  required
-                />
+            {/* שביר + גודל */}
+            <div className="form-grid">
+              <div className="input-group">
+                <label>האם המוצר שביר?</label>
+                <div className="toggle-group">
+                  <button
+                    type="button"
+                    className={`toggle-btn ${isFragile ? 'toggle-btn--active' : ''}`}
+                    onClick={() => setIsFragile(true)}
+                  >
+                    כן
+                  </button>
+                  <button
+                    type="button"
+                    className={`toggle-btn ${!isFragile ? 'toggle-btn--active' : ''}`}
+                    onClick={() => setIsFragile(false)}
+                  >
+                    לא
+                  </button>
+                </div>
+              </div>
+
+              <div className="input-group">
+                <label>גודל החבילה <span className="label-optional">(אופציונלי)</span></label>
+                <div className="size-group">
+                  {SIZE_OPTIONS.map(({ value, label }) => (
+                    <button
+                      key={value}
+                      type="button"
+                      className={`size-btn ${packageSize === value ? 'size-btn--active' : ''}`}
+                      onClick={() => setPackageSize(packageSize === value ? '' : value)}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -223,7 +285,6 @@ export default function NewRequestPage() {
           </form>
         </section>
       </main>
-
     </div>
   );
 }
