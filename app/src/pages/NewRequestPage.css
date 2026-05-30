@@ -35,7 +35,7 @@
 }
 
 .form-header h1 {
-  font-size: var(--font-size-headline-xl);
+  font-size: var(--font-size-heading-xl);
   font-weight: 700;
   color: var(--color-primary);
 }
@@ -127,7 +127,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--spacing-sm);
-  box-shadow: 0 4px 6px -1px var(--color-primary-alpha-20), 0 2px 4px -2px var(--color-primary-alpha-20);
+  box-shadow: 0 4px 6px -1px rgba(0, 62, 199, 0.2), 0 2px 4px -2px rgba(0, 62, 199, 0.2);
   transition: all 0.2s;
   border: none;
   cursor: pointer;

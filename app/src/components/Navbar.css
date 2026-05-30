@@ -98,6 +98,30 @@
   transform: scale(0.95);
 }
 
+.nav-logout-btn {
+  background: none;
+  border: 1.5px solid var(--color-outline-variant);
+  border-radius: var(--border-radius-lg);
+  padding: 8px var(--spacing-md);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label-md);
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+  cursor: pointer;
+  transition: all 200ms ease;
+  white-space: nowrap;
+}
+
+.nav-logout-btn:hover {
+  border-color: var(--color-error);
+  color: var(--color-error);
+  background-color: var(--color-error-container);
+}
+
+.nav-logout-btn:active {
+  transform: scale(0.95);
+}
+
 .hamburger-menu {
   display: none;
   background: none;

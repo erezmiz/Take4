@@ -1,6 +1,20 @@
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './GallerySection.css';
 
 export default function GallerySection() {
+  const { user, openAuthModal } = useAuth();
+  const navigate = useNavigate();
+
+  const handleStartBuying = () => {
+    if (!user) { openAuthModal(); return; }
+    navigate('/dashboard');
+  };
+
+  const handleBecomeTraveler = () => {
+    if (!user) { openAuthModal(); return; }
+    navigate('/new-request');
+  };
   return (
     <section className="gallery-section">
       <div className="gallery-container">
@@ -13,8 +27,8 @@ export default function GallerySection() {
             פלטפורמת הקהילה שמחברת בין קונים למטיילים. קבלו מוצרים מקוריים מכל מקום בעולם, או הפכו את המקום הפנוי במזוודה לכסף.
           </p>
           <div className="gallery-buttons">
-            <button className="btn-primary">התחילו לקנות</button>
-            <button className="btn-secondary">הפכו למטיילים</button>
+            <button className="btn-primary" onClick={handleStartBuying}>התחילו לקנות</button>
+            <button className="btn-secondary" onClick={handleBecomeTraveler}>הפכו למטיילים</button>
           </div>
         </div>
 

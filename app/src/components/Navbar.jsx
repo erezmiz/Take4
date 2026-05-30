@@ -1,9 +1,25 @@
 import { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { supabase } from '../lib/supabase';
 import './Navbar.css';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, openAuthModal } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate('/');
+  };
+
+  const handlePostRequest = (e) => {
+    if (!user) {
+      e.preventDefault();
+      openAuthModal();
+    }
+  };
 
   const navLinks = [
     { to: "/profile", text: "פרופיל" },
@@ -17,17 +33,28 @@ export default function Navbar() {
       <div className="nav-content">
         <div className="nav-left">
           <div className="nav-user-actions">
-            <img 
-              alt="User avatar" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtbEFKkRo4he01oZOVEFsfVcjpqThez3_xAMKwMF4C1zV23MSWOR5J7O7qIBmUvywgguO8Tc_O9a3ggvuMEC77q5M939HwK0Z-s7a9NZanIvug-55q7Md6JY78gIxbTiu4gKL6XLdH2vNneJie9aKJPYFpwoymx1kkHntICTQzni8aCY6RH2eLELRAT05eL-djxo5zXGblVa_ZDMMPdJ0KBA71wrXVRevLet60IhikIQGQHlwkNJUccM4iHq_ZMIA3e3Mt-UO_QSMk" 
-              className="nav-avatar"
-            />
-            <button className="nav-icon-button">
-              <span className="material-symbols-outlined">notifications</span>
-            </button>
-            <Link to="/new-request" className="post-request-btn">
-              פרסם בקשה
-            </Link>
+            {user ? (
+              <>
+                <img
+                  alt="User avatar"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtbEFKkRo4he01oZOVEFsfVcjpqThez3_xAMKwMF4C1zV23MSWOR5J7O7qIBmUvywgguO8Tc_O9a3ggvuMEC77q5M939HwK0Z-s7a9NZanIvug-55q7Md6JY78gIxbTiu4gKL6XLdH2vNneJie9aKJPYFpwoymx1kkHntICTQzni8aCY6RH2eLELRAT05eL-djxo5zXGblVa_ZDMMPdJ0KBA71wrXVRevLet60IhikIQGQHlwkNJUccM4iHq_ZMIA3e3Mt-UO_QSMk"
+                  className="nav-avatar"
+                />
+                <button className="nav-icon-button">
+                  <span className="material-symbols-outlined">notifications</span>
+                </button>
+                <Link to="/new-request" className="post-request-btn" onClick={handlePostRequest}>
+                  פרסם בקשה
+                </Link>
+                <button className="nav-logout-btn" onClick={handleLogout}>
+                  יציאה
+                </button>
+              </>
+            ) : (
+              <Link to="/auth" className="post-request-btn">
+                כניסה
+              </Link>
+            )}
           </div>
         </div>
 

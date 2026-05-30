@@ -1,3 +1,5 @@
+import UploadSection from '../components/UploadSection';
+import './NewRequestPage.css';
 
 export default function NewRequestPage() {
   return (

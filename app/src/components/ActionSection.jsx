@@ -1,7 +1,14 @@
+import { useAuth } from '../context/AuthContext';
 import ActionCard from './ActionCard';
 import './ActionSection.css';
 
 export default function ActionSection() {
+  const { user, openAuthModal } = useAuth();
+
+  const handleActionClick = () => {
+    if (!user) openAuthModal();
+  };
+
   const actions = [
     {
       title: 'רוצים משהו מחו"ל?',
@@ -27,6 +34,7 @@ export default function ActionSection() {
             description={action.description}
             buttonText={action.buttonText}
             backgroundImage={action.backgroundImage}
+            onButtonClick={handleActionClick}
           />
         ))}
       </div>
