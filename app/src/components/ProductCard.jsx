@@ -1,16 +1,20 @@
+import { useNavigate } from 'react-router-dom';
 import './ProductCard.css';
 
-export default function ProductCard({ 
-  image, 
-  title, 
-  origin, 
-  destination, 
+export default function ProductCard({
+  id,
+  image,
+  title,
+  origin,
+  destination,
   reward,
   country,
-  badges 
+  badges
 }) {
+  const navigate = useNavigate();
+
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={() => navigate(`/product/${id}`)}>
       <div className="product-image">
         <img src={image} alt={title} />
         <div className="product-badges">

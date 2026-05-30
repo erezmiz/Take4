@@ -1,79 +1,73 @@
 import './ProductDetails.css';
 
-export default function ProductDetails() {
+export default function ProductDetails({ request }) {
+  const { title, destination_country, max_price, deliver_pay, product_url, status } = request;
+
   return (
     <div className="details-container">
+
       <div className="header-info">
-        <div className="verified-badge">
-          <span className="material-symbols-outlined">verified</span>
-          בקשה מאומתת
-        </div>
-        <h1 className="product-title">מכונת אספרסו Brezza Pro</h1>
-        <p className="product-locations">
-          התבקש מ: <span className="location">מילאנו, איטליה</span> אל <span className="location">דובאי, איחוד האמירויות</span>
-        </p>
+        <h1 className="product-title">{title}</h1>
+        {destination_country && (
+          <p className="product-destination">
+            יעד למסירה: <span className="location">{destination_country}</span>
+          </p>
+        )}
       </div>
+
+      {destination_country && (
+        <div className="route-section">
+          <span className="route-label">מסלול</span>
+          <div className="route-track">
+            <span className="route-dot" />
+            <span className="route-city">{destination_country}</span>
+          </div>
+        </div>
+      )}
 
       <div className="bento-grid">
         <div className="bento-item">
-          <p className="bento-label">משקל הפריט</p>
-          <div className="bento-value">
-            <span className="material-symbols-outlined weight-icon">weight</span>
-            <span>4.5 ק"ג</span>
-          </div>
+          <p className="bento-label">תגמול לשליח</p>
+          <p className="bento-amount">
+            {deliver_pay != null ? `$${Number(deliver_pay).toFixed(2)}` : '—'}
+          </p>
         </div>
         <div className="bento-item">
-          <p className="bento-label">תגמול למטייל</p>
-          <div className="bento-value">
-            <span className="material-symbols-outlined reward-icon">payments</span>
-            <span className="reward-amount">$120.00</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="user-info">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO0z5z5yUTTiC1cYiAE2MeHDpkHhh5-ZqGEVP2rWe1fe2chDZ95feTje6meTOcJapFUxWOVKWM47ywpPJI0Rc_hINknuSR2PnOO92TunXPIvUtOBJsQTGa7o5DVJoZhbk1Gmjh238W1cXgoCIA_z-nU5hE6RfpkZxGAg-FyFl6gERksFimeeMvEjL5Ed_OFcTWz9maWemuOPYO-1KTUD0IdRFN3WJtLZUem25XM-7Xk1CclEgWrXw2FQnGFCMOf5L2pSv9CbiCaYnz" alt="Ahmed Khalil" className="user-avatar" />
-        <div className="user-details">
-          <h4 className="user-name">אחמד חליל</h4>
-          <div className="user-rating">
-            <div className="stars">
-              <span className="material-symbols-outlined fill">star</span>
-              <span className="material-symbols-outlined fill">star</span>
-              <span className="material-symbols-outlined fill">star</span>
-              <span className="material-symbols-outlined fill">star</span>
-              <span className="material-symbols-outlined fill">star</span>
-            </div>
-            <span className="review-count">(48 חוות דעת)</span>
-          </div>
-        </div>
-        <span className="material-symbols-outlined info-icon">info</span>
-      </div>
-
-      <div className="cta-section">
-        <div className="escrow-info">
-          <div className="escrow-lock">
-            <span className="material-symbols-outlined">lock</span>
-            <span>תשלום מאובטח בנאמנות (Escrow)</span>
-          </div>
-          <span className="handling-fee">דמי טיפול: $8.50</span>
-        </div>
-        <div className="cta-buttons">
-          <button className="pay-button">
-            <span>שלם בנאמנות</span>
-            <span className="pay-amount">($128.50)</span>
-          </button>
-          <button className="chat-button">
-            <span className="material-symbols-outlined">chat_bubble</span>
-            <span>פתח צ'אט</span>
-          </button>
-        </div>
-        <div className="safety-info">
-          <span className="material-symbols-outlined">security</span>
-          <p>
-            התשלום שלך מוחזק בבטחה בנאמנות ומשוחרר למטייל רק לאחר שתאשר את קבלת הפריט. <a href="#" className="learn-more">למד עוד על אמון ובטיחות.</a>
+          <p className="bento-label">מחיר מקסימלי</p>
+          <p className="bento-amount">
+            {max_price != null ? `$${Number(max_price).toFixed(2)}` : '—'}
           </p>
         </div>
       </div>
+
+      <p className="status-line">
+        סטטוס :&nbsp;
+        <span className="status-value">{status === 'new' ? 'חדש' : status}</span>
+      </p>
+
+      {product_url && (
+        <a href={product_url} target="_blank" rel="noopener noreferrer" className="product-page-link">
+          קישור לדף המוצר
+        </a>
+      )}
+
+      <div className="cta-section">
+        <p className="escrow-text">תשלומים מאובטחים בנאמנות (Escrow)</p>
+
+        <div className="cta-buttons">
+          <button className="pay-button">הרשם לביצוע המשלוח</button>
+          <button className="chat-button">עבור לשיחה עם יוצר הבקשה</button>
+        </div>
+
+        <div className="safety-info">
+          <span className="material-symbols-outlined">security</span>
+          <p>
+            התשלום שלך מוחזק בבטחה בנאמנות ומשוחרר למטייל רק לאחר שתאשר את קבלת הפריט.{' '}
+            <a href="#" className="learn-more">למד עוד על אמון ובטיחות.</a>
+          </p>
+        </div>
+      </div>
+
     </div>
   );
 }

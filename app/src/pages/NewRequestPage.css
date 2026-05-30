@@ -52,6 +52,11 @@
   gap: var(--spacing-lg);
 }
 
+.label-optional {
+  font-weight: 400;
+  color: var(--color-on-surface-variant);
+}
+
 .input-group label {
   display: block;
   font-size: 14px;

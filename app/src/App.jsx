@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <LandingPage /> },
       { path: 'dashboard', element: <DashboardPage /> },
-      { path: 'product', element: <ProductPage /> },
+      { path: 'product/:id', element: <ProductPage /> },
       { path: 'chat', element: <ChatPage /> },
       { path: 'new-request', element: <NewRequestPage /> },
       { path: 'profile', element: <ProfilePage /> },

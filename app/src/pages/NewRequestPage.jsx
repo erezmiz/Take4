@@ -13,6 +13,7 @@ export default function NewRequestPage() {
   const [buyLink, setBuyLink] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [destination, setDestination] = useState('');
+  const [deliverPay, setDeliverPay] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
@@ -45,6 +46,7 @@ export default function NewRequestPage() {
         title: productName,
         product_url: buyLink || null,
         max_price: maxPrice ? parseFloat(maxPrice) : null,
+        deliver_pay: deliverPay ? parseFloat(deliverPay) : null,
         destination_country: destination,
         image_url: imageUrl,
         status: 'new',
@@ -117,6 +119,21 @@ export default function NewRequestPage() {
                     onChange={(e) => setMaxPrice(e.target.value)}
                   />
                 </div>
+              </div>
+            </div>
+
+            <div className="input-group">
+              <label htmlFor="deliver-pay">תגמול למשלוח ($) <span className="label-optional">(אופציונלי)</span></label>
+              <div className="input-with-icon">
+                <span className="material-symbols-outlined">paid</span>
+                <input
+                  id="deliver-pay"
+                  type="number"
+                  placeholder="0.00"
+                  min="0"
+                  value={deliverPay}
+                  onChange={(e) => setDeliverPay(e.target.value)}
+                />
               </div>
             </div>
 
