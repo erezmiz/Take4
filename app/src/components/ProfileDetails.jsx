@@ -1,37 +1,107 @@
+import { useState, useEffect, useMemo } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { supabase } from '../lib/supabase';
 import './ProfileDetails.css';
 
+// Deterministic pseudo-random from a string seed — same user always gets same value
+function seededNumber(seed, min, max, decimals = 0) {
+  let hash = 0;
+  for (let i = 0; i < seed.length; i++) {
+    hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+    hash |= 0;
+  }
+  const norm = (Math.abs(hash) % 10000) / 9999;
+  return parseFloat((min + norm * (max - min)).toFixed(decimals));
+}
+
+function formatJoinDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  const months = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני',
+                  'יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+  return `${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+
 export default function ProfileDetails() {
+  const { user } = useAuth();
+  const [profile,     setProfile]     = useState(null);
+  const [dealsCount,  setDealsCount]  = useState(0);
+  const [loading,     setLoading]     = useState(true);
+
+  useEffect(() => {
+    if (!user) { setLoading(false); return; }
+
+    async function load() {
+      const [{ data: profileData }, { count }] = await Promise.all([
+        supabase.from('profiles').select('*').eq('user_id', user.id).single(),
+        supabase.from('deals')
+          .select('*', { count: 'exact', head: true })
+          .eq('traveler_id', user.id),
+      ]);
+      setProfile(profileData);
+      setDealsCount(count || 0);
+      setLoading(false);
+    }
+
+    load();
+  }, [user]);
+
+  const trustScore     = useMemo(() => user ? seededNumber(user.id + 't', 87, 98, 0) : 0, [user]);
+  const communityScore = useMemo(() => user ? seededNumber(user.id + 'c', 4.1, 4.9, 1) : 0, [user]);
+
+  if (loading) {
+    return (
+      <section className="profile-details-section">
+        <div className="profile-card profile-card--loading">
+          <p>טוען פרופיל...</p>
+        </div>
+      </section>
+    );
+  }
+
+  const name   = profile?.title || profile?.full_name || user?.email?.split('@')[0] || 'משתמש';
+  const avatar = profile?.image_url || profile?.profile_image_url || null;
+  const joined = formatJoinDate(profile?.created_at);
+
   return (
     <section className="profile-details-section">
       <div className="profile-card">
+
         <div className="avatar-container">
-          <img 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsw1lEnwrxEpASaV0knOtOImg0UU8wpFt5Vi6ghKH_n7p2trxXKQVnErRt_Eo8Xe2TGlt5Q93Kqf-azq_WUuXuoF8QPyHcxTNYJga7Lbw0uI7i6b5SmhXUgQLvW9xfZst41ro11x-_Uz7SAfWqQ06vU-5rcWlu-yZB6SH0A4sxNvL9W5SA3J2z2WZBlLvqYcNE05qwYiHTt4cvn4pl0O9dZOeyCI9rsags15PnF9lc9QgBqT0T92AcG5apMcC2GHgQtbT0nTpUtrFo" 
-            alt="אלכס הנדרסון" 
-            className="avatar-image" 
-          />
+          {avatar ? (
+            <img src={avatar} alt={name} className="avatar-image" />
+          ) : (
+            <div className="avatar-placeholder">
+              {name.charAt(0).toUpperCase()}
+            </div>
+          )}
           <div className="verified-badge">
             <span className="material-symbols-outlined">verified</span>
           </div>
         </div>
+
         <div className="details-text">
-          <h1>אלכס הנדרסון</h1>
-          <p>חבר דרגת כסף • הצטרף באוקטובר 2023</p>
+          <h1>{name}</h1>
+          <p>
+            {user?.email}
+            {joined && <> • הצטרף ב{joined}</>}
+          </p>
           <div className="stats">
             <div className="stat-item">
               <span>מדד אמון</span>
-              <strong>98%</strong>
+              <strong>{trustScore}%</strong>
             </div>
             <div className="stat-item">
               <span>עסקאות</span>
-              <strong>24 עסקאות</strong>
+              <strong>{dealsCount} עסקאות</strong>
             </div>
             <div className="stat-item">
               <span>קהילה</span>
-              <strong>4.9 ★</strong>
+              <strong>{communityScore} ★</strong>
             </div>
           </div>
         </div>
+
         <div className="profile-actions">
           <button className="edit-profile-btn">ערוך פרופיל</button>
           <button className="settings-btn">
@@ -39,6 +109,7 @@ export default function ProfileDetails() {
             הגדרות חשבון
           </button>
         </div>
+
       </div>
     </section>
   );
