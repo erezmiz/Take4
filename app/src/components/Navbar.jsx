@@ -43,7 +43,7 @@ export default function Navbar() {
                   style={{ cursor: 'pointer' }}
                 />
                 <button className="nav-icon-button">
-                  <span className="material-symbols-outlined">notifications</span>
+                  🔔
                 </button>
                 <Link to="/new-request" className="post-request-btn" onClick={handlePostRequest}>
                   פרסם בקשה
@@ -78,9 +78,7 @@ export default function Navbar() {
         </div>
         
         <button className="hamburger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          <span className="material-symbols-outlined">
-            {isMenuOpen ? 'close' : 'menu'}
-          </span>
+          {isMenuOpen ? '✕' : '☰'}
         </button>
       </div>
     </header>

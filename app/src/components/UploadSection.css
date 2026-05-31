@@ -58,10 +58,12 @@
   color: var(--color-primary);
 }
 
-.drop-zone .material-symbols-outlined {
+.drop-zone .material-symbols-outlined,
+.upload-icon {
   color: var(--color-primary);
   font-size: 36px;
   margin-bottom: var(--spacing-sm);
+  line-height: 1;
 }
 
 .drop-zone-text {
@@ -113,7 +115,8 @@
   font-size: var(--font-size-label-sm);
 }
 
-.preview-placeholder .material-symbols-outlined {
+.preview-placeholder .material-symbols-outlined,
+.preview-placeholder-icon {
   font-size: 32px;
   opacity: 0.4;
 }

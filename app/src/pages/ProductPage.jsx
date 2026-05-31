@@ -33,7 +33,6 @@ export default function ProductPage() {
   if (loading) {
     return (
       <div className="product-page-state" dir="rtl">
-        <span className="material-symbols-outlined">sync</span>
         <p>טוען בקשה...</p>
       </div>
     );
@@ -42,7 +41,6 @@ export default function ProductPage() {
   if (error || !request) {
     return (
       <div className="product-page-state product-page-state--error" dir="rtl">
-        <span className="material-symbols-outlined">error</span>
         <p>הבקשה לא נמצאה</p>
       </div>
     );

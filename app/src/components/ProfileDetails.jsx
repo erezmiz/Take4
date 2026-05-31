@@ -99,7 +99,7 @@ export default function ProfileDetails() {
             </div>
           )}
           <div className="verified-badge">
-            <span className="material-symbols-outlined">verified</span>
+            ✓
           </div>
         </div>
 

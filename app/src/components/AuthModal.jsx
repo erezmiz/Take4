@@ -15,7 +15,7 @@ export default function AuthModal() {
     <div className="auth-modal-backdrop" onClick={handleBackdropClick}>
       <div className="auth-modal-card" dir="rtl">
         <button className="auth-modal-close" type="button" onClick={closeAuthModal}>
-          <span className="material-symbols-outlined">close</span>
+          ✕
         </button>
         <AuthForm onSuccess={closeAuthModal} />
       </div>

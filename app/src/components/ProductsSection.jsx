@@ -40,21 +40,18 @@ export default function ProductsSection() {
 
       {loading && (
         <div className="products-state">
-          <span className="products-state-icon material-symbols-outlined">sync</span>
           <p>טוען בקשות...</p>
         </div>
       )}
 
       {error && (
         <div className="products-state products-state--error">
-          <span className="products-state-icon material-symbols-outlined">error</span>
           <p>שגיאה בטעינת הבקשות: {error}</p>
         </div>
       )}
 
       {!loading && !error && products.length === 0 && (
         <div className="products-state">
-          <span className="products-state-icon material-symbols-outlined">inbox</span>
           <p>אין בקשות עדיין. היו הראשונים לפרסם!</p>
         </div>
       )}

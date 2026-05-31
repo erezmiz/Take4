@@ -122,13 +122,13 @@ export default function NewRequestPage() {
   return (
     <div dir="rtl">
       <main className="new-request-main">
-        <div
-          className="back-navigation"
+        <button
+          className="back-btn"
           onClick={() => navigate(isEditMode ? `/product/${id}` : '/dashboard')}
         >
-          <span className="material-symbols-outlined">arrow_forward</span>
-          <span>{isEditMode ? 'חזרה לבקשה' : 'חזרה לבקשות'}</span>
-        </div>
+          <span className="back-chevron" />
+          {isEditMode ? 'חזרה לבקשה' : 'חזרה לבקשות'}
+        </button>
 
         <section className="form-section">
           <div className="form-header">
@@ -165,7 +165,7 @@ export default function NewRequestPage() {
             <div className="input-group">
               <label htmlFor="meet-deliver">יעד למסירה</label>
               <div className="input-with-icon">
-                <span className="material-symbols-outlined">location_on</span>
+                <span className="input-icon-text">📍</span>
                 <input
                   id="meet-deliver"
                   type="text"
@@ -182,7 +182,7 @@ export default function NewRequestPage() {
               <div className="input-group">
                 <label htmlFor="buy-link">קישור לקנייה <span className="label-optional">(אופציונלי)</span></label>
                 <div className="input-with-icon">
-                  <span className="material-symbols-outlined">link</span>
+                  <span className="input-icon-text">🔗</span>
                   <input
                     id="buy-link"
                     type="url"
@@ -196,7 +196,7 @@ export default function NewRequestPage() {
               <div className="input-group">
                 <label htmlFor="max-price">תקציב מקסימלי ($)</label>
                 <div className="input-with-icon">
-                  <span className="material-symbols-outlined">payments</span>
+                  <span className="input-icon-text">$</span>
                   <input
                     id="max-price"
                     type="number"
@@ -215,7 +215,7 @@ export default function NewRequestPage() {
                 תגמול למשלוח ($) <span className="label-optional">(אופציונלי)</span>
               </label>
               <div className="input-with-icon">
-                <span className="material-symbols-outlined">paid</span>
+                <span className="input-icon-text">💰</span>
                 <input
                   id="deliver-pay"
                   type="number"
@@ -291,9 +291,6 @@ export default function NewRequestPage() {
 
             <div className="submit-section">
               <button type="submit" className="save-button" disabled={submitting}>
-                <span className="material-symbols-outlined">
-                  {submitting ? 'hourglass_empty' : isEditMode ? 'update' : 'save'}
-                </span>
                 {submitting ? 'שומר...' : isEditMode ? 'עדכון בקשה' : 'שמירת בקשה'}
               </button>
               <p className="terms-text">

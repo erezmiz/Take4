@@ -11,12 +11,10 @@ export default function ImageGallery({ imageUrl, title }) {
         <img src={mainImage} alt={title || 'תמונת מוצר'} className="main-image" />
         <div className="image-actions">
           <button className="image-action-btn">
-            <span className="material-symbols-outlined">share</span>
-            <span className="action-label">share</span>
+            <span className="action-label">↗ שתף</span>
           </button>
           <button className="image-action-btn">
-            <span className="material-symbols-outlined">favorite</span>
-            <span className="action-label">favorite</span>
+            <span className="action-label">♡ שמור</span>
           </button>
         </div>
       </div>

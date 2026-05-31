@@ -9,8 +9,8 @@ export default function UploadSection({ file, onFileChange, existingUrl }) {
       <div className="upload-grid">
 
         <div className={`drop-zone ${file ? 'drop-zone--selected' : existingUrl ? 'drop-zone--existing' : ''}`}>
-          <span className="material-symbols-outlined">
-            {file ? 'check_circle' : existingUrl ? 'image' : 'cloud_upload'}
+          <span className="upload-icon">
+            {file ? '✓' : existingUrl ? '🖼' : '⬆'}
           </span>
           {file ? (
             <p className="drop-zone-text">{file.name}</p>
@@ -41,7 +41,7 @@ export default function UploadSection({ file, onFileChange, existingUrl }) {
             </>
           ) : (
             <div className="preview-placeholder">
-              <span className="material-symbols-outlined">image</span>
+              <span className="preview-placeholder-icon">🖼</span>
               <span>תצוגה מקדימה תופיע כאן</span>
             </div>
           )}

@@ -131,11 +131,9 @@ export default function ProductDetails({ request, isOwner }) {
           {isOwner && (
             <div className="owner-actions">
               <button className="edit-request-btn" onClick={() => navigate(`/new-request/${request.id}`)}>
-                <span className="material-symbols-outlined">edit</span>
                 עריכה
               </button>
               <button className="delete-request-btn" onClick={() => setConfirming(true)}>
-                <span className="material-symbols-outlined">delete</span>
                 מחיקה
               </button>
             </div>
@@ -297,7 +295,7 @@ export default function ProductDetails({ request, isOwner }) {
         </div>
 
         <div className="safety-info">
-          <span className="material-symbols-outlined">security</span>
+          <span className="safety-icon">🔒</span>
           <p>
             התשלום שלך מוחזק בבטחה בנאמנות ומשוחרר למטייל רק לאחר שתאשר את קבלת הפריט.{' '}
             <a href="#" className="learn-more">למד עוד על אמון ובטיחות.</a>
