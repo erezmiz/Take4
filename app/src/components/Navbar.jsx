@@ -22,10 +22,10 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { to: "/profile", text: "פרופיל" },
-    { to: "/chat", text: "הודעות" },
+    ...(user ? [{ to: "/profile", text: "פרופיל" }] : []),
+    { to: "/chat",      text: "הודעות" },
     { to: "/dashboard", text: "בקשות" },
-    { to: "/", text: "גלה" },
+    { to: "/",          text: "גלה" },
   ];
 
   return (
@@ -39,6 +39,8 @@ export default function Navbar() {
                   alt="User avatar"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtbEFKkRo4he01oZOVEFsfVcjpqThez3_xAMKwMF4C1zV23MSWOR5J7O7qIBmUvywgguO8Tc_O9a3ggvuMEC77q5M939HwK0Z-s7a9NZanIvug-55q7Md6JY78gIxbTiu4gKL6XLdH2vNneJie9aKJPYFpwoymx1kkHntICTQzni8aCY6RH2eLELRAT05eL-djxo5zXGblVa_ZDMMPdJ0KBA71wrXVRevLet60IhikIQGQHlwkNJUccM4iHq_ZMIA3e3Mt-UO_QSMk"
                   className="nav-avatar"
+                  onClick={() => navigate('/profile')}
+                  style={{ cursor: 'pointer' }}
                 />
                 <button className="nav-icon-button">
                   <span className="material-symbols-outlined">notifications</span>
