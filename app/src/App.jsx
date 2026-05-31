@@ -8,6 +8,7 @@ import ChatPage from './pages/ChatPage';
 import NewRequestPage from './pages/NewRequestPage';
 import ProfilePage from './pages/ProfilePage';
 import AuthPage from './pages/AuthPage';
+import EditProfilePage from './pages/EditProfilePage';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { path: 'new-request/:id', element: <NewRequestPage /> },
       { path: 'profile', element: <ProfilePage /> },
       { path: 'auth', element: <AuthPage /> },
+      { path: 'edit-profile', element: <EditProfilePage /> },
     ],
   },
 ]);

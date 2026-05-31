@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../lib/supabase';
 import './ProfileDetails.css';
@@ -24,9 +25,13 @@ function formatJoinDate(iso) {
 
 export default function ProfileDetails() {
   const { user } = useAuth();
-  const [profile,     setProfile]     = useState(null);
-  const [dealsCount,  setDealsCount]  = useState(0);
-  const [loading,     setLoading]     = useState(true);
+  const navigate = useNavigate();
+  const [profile,      setProfile]     = useState(null);
+  const [dealsCount,   setDealsCount]  = useState(0);
+  const [loading,      setLoading]     = useState(true);
+  const [confirming,   setConfirming]  = useState(false);
+  const [deleting,     setDeleting]    = useState(false);
+  const [deleteError,  setDeleteError] = useState('');
 
   useEffect(() => {
     if (!user) { setLoading(false); return; }
@@ -45,6 +50,24 @@ export default function ProfileDetails() {
 
     load();
   }, [user]);
+
+  const handleDeleteAccount = async () => {
+    setDeleting(true);
+    setDeleteError('');
+    try {
+      const { error } = await supabase
+        .from('profiles')
+        .delete()
+        .eq('user_id', user.id);
+      if (error) throw error;
+      await supabase.auth.signOut();
+      navigate('/');
+    } catch (err) {
+      setDeleteError(err.message || 'שגיאה במחיקה. אנא נסה שנית.');
+      setDeleting(false);
+      setConfirming(false);
+    }
+  };
 
   const trustScore     = useMemo(() => user ? seededNumber(user.id + 't', 87, 98, 0) : 0, [user]);
   const communityScore = useMemo(() => user ? seededNumber(user.id + 'c', 4.1, 4.9, 1) : 0, [user]);
@@ -103,14 +126,39 @@ export default function ProfileDetails() {
         </div>
 
         <div className="profile-actions">
-          <button className="edit-profile-btn">ערוך פרופיל</button>
-          <button className="settings-btn">
-            <span className="material-symbols-outlined">settings</span>
-            הגדרות חשבון
+          <button className="edit-profile-btn" onClick={() => navigate('/edit-profile')}>ערוך פרופיל</button>
+          <button className="delete-account-btn" onClick={() => setConfirming(true)}>
+            מחיקת חשבון
           </button>
         </div>
 
       </div>
+
+      {confirming && (
+        <div className="delete-account-confirm">
+          <p className="delete-account-confirm-text">
+            האם למחוק את החשבון? פעולה זו תמחק את נתוני הפרופיל ולא ניתנת לביטול.
+          </p>
+          {deleteError && <p className="delete-account-error">{deleteError}</p>}
+          <div className="delete-account-confirm-actions">
+            <button
+              className="delete-confirm-yes"
+              onClick={handleDeleteAccount}
+              disabled={deleting}
+            >
+              {deleting ? 'מוחק...' : 'כן, מחק'}
+            </button>
+            <button
+              className="delete-confirm-cancel"
+              onClick={() => { setConfirming(false); setDeleteError(''); }}
+              disabled={deleting}
+            >
+              ביטול
+            </button>
+          </div>
+        </div>
+      )}
+
     </section>
   );
 }

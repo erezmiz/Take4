@@ -140,6 +140,104 @@
   }
 }
 
+.delete-account-btn {
+  background: none;
+  border: none;
+  padding: 4px 0;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label-sm);
+  font-weight: 500;
+  color: var(--color-on-surface-variant);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 150ms ease;
+  text-align: center;
+}
+
+.delete-account-btn:hover {
+  color: var(--color-error);
+}
+
+/* ── Confirmation banner ── */
+.delete-account-confirm {
+  width: 100%;
+  background-color: var(--color-error-container);
+  border: 1px solid var(--color-error);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  animation: fadeInDown 150ms ease;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.delete-account-confirm-text {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label-md);
+  color: var(--color-on-error-container);
+  font-weight: 500;
+  margin: 0;
+  text-align: center;
+}
+
+.delete-account-error {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label-sm);
+  color: var(--color-error);
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+.delete-account-confirm-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.delete-confirm-yes,
+.delete-confirm-cancel {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label-md);
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 200ms ease;
+}
+
+.delete-confirm-yes {
+  background-color: var(--color-error);
+  color: var(--color-on-error);
+}
+
+.delete-confirm-yes:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.delete-confirm-cancel {
+  background-color: var(--color-surface-main);
+  color: var(--color-on-surface);
+  border: 1px solid var(--color-outline-variant);
+}
+
+.delete-confirm-cancel:hover:not(:disabled) {
+  background-color: var(--color-surface-container);
+}
+
+.delete-confirm-yes:disabled,
+.delete-confirm-cancel:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .edit-profile-btn {
   background-color: var(--color-secondary-container);
   color: var(--color-on-secondary-fixed);
