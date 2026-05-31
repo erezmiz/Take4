@@ -26,7 +26,9 @@ const router = createBrowserRouter([
       { path: 'edit-profile', element: <EditProfilePage /> },
     ],
   },
-]);
+], {
+  basename: '/BringIt' // <-- השורה הזו נוספה כאן כדי להגדיר את תת-התיקייה ב-IIS
+});
 
 function App() {
   return (
