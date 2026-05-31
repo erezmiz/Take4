@@ -26,6 +26,7 @@ export default function NewRequestPage() {
   const [deliverPay,       setDeliverPay]        = useState('');
   const [isFragile,        setIsFragile]         = useState(false);
   const [packageSize,      setPackageSize]       = useState('');
+  const [deliverDate,      setDeliverDate]       = useState('');
   const [imageFile,        setImageFile]         = useState(null);
   const [existingImageUrl, setExistingImageUrl]  = useState(null);
   const [loadingData,      setLoadingData]       = useState(isEditMode);
@@ -45,6 +46,7 @@ export default function NewRequestPage() {
           setDeliverPay(data.deliver_pay != null ? String(data.deliver_pay) : '');
           setIsFragile(data.broken || false);
           setPackageSize(data.size || '');
+          setDeliverDate(data.deliver_date || '');
           setExistingImageUrl(data.image_url || null);
         }
         setLoadingData(false);
@@ -82,6 +84,7 @@ export default function NewRequestPage() {
         deliver_pay:        deliverPay ? parseFloat(deliverPay) : null,
         broken:             isFragile,
         size:               packageSize || null,
+        deliver_date:       deliverDate || null,
         image_url:          imageUrl,
         updated_at:         now,
       };
@@ -222,6 +225,21 @@ export default function NewRequestPage() {
                   onChange={(e) => setDeliverPay(e.target.value)}
                 />
               </div>
+            </div>
+
+            {/* תאריך אחרון לקבלת המוצר */}
+            <div className="input-group">
+              <label htmlFor="deliver-date">
+                תאריך אחרון לקבלת המוצר <span className="label-optional">(אופציונלי)</span>
+              </label>
+              <input
+                id="deliver-date"
+                type="date"
+                className="date-input"
+                value={deliverDate}
+                onChange={(e) => setDeliverDate(e.target.value)}
+                min={new Date().toISOString().split('T')[0]}
+              />
             </div>
 
             {/* שביר + גודל */}

@@ -187,6 +187,26 @@
   background-color: var(--color-surface-container);
 }
 
+.date-input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1.5px solid var(--color-outline-variant);
+  border-radius: var(--border-radius-input);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-body-md);
+  color: var(--color-on-background);
+  background-color: var(--color-surface-container-lowest);
+  outline: none;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+  direction: ltr;
+  text-align: right;
+}
+
+.date-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 62, 199, 0.1);
+}
+
 .form-error {
   font-family: var(--font-family-primary);
   font-size: var(--font-size-label-md);
