@@ -1,21 +1,43 @@
 import { useState } from 'react';
 import './SearchProduct.css';
 
-export default function SearchProduct() {
-  const [searchText, setSearchText] = useState('');
-  const [selectedDestinations, setSelectedDestinations] = useState(['ניו יורק']);
-  const [minReward, setMinReward] = useState('הכל');
-  const [itemSize, setItemSize] = useState('קטן');
-  const [isFragile, setIsFragile] = useState(true);
+const SIZE_OPTIONS  = ['גדול', 'בינוני', 'קטן'];
+const REWARD_OPTIONS = ['הכל', '$20+', '$50+', '$100+'];
+const SIZE_MAP = { 'גדול': 'large', 'בינוני': 'medium', 'קטן': 'small' };
+const SIZE_LABEL = { large: 'גדול', medium: 'בינוני', small: 'קטן' };
+
+export default function SearchProduct({ filters, onFiltersChange, initialFilters }) {
+  const [inputText,   setInputText]   = useState('');
   const [showFilters, setShowFilters] = useState(true);
 
-  const removeDestination = (dest) => {
-    setSelectedDestinations(prev => prev.filter(d => d !== dest));
+  const update = (patch) => onFiltersChange({ ...filters, ...patch });
+
+  const addDestination = () => {
+    const val = inputText.trim();
+    if (!val || filters.destinations.includes(val)) { setInputText(''); return; }
+    update({ destinations: [...filters.destinations, val] });
+    setInputText('');
   };
 
-  const handleSearch = () => {
-    console.log({ selectedDestinations, minReward, itemSize, isFragile });
+  const removeDestination = (dest) =>
+    update({ destinations: filters.destinations.filter((d) => d !== dest) });
+
+  const toggleSize = (hebrewSize) => {
+    const dbVal = SIZE_MAP[hebrewSize];
+    update({ size: filters.size === dbVal ? '' : dbVal });
   };
+
+  const resetFilters = () => {
+    onFiltersChange({ ...initialFilters });
+    setInputText('');
+  };
+
+  const activeFilterCount = [
+    filters.destinations.length > 0,
+    filters.minReward !== 'הכל',
+    filters.size !== '',
+    filters.fragile,
+  ].filter(Boolean).length;
 
   return (
     <div className="search-section">
@@ -31,37 +53,36 @@ export default function SearchProduct() {
 
       <div className="search-bar-container">
         <div className="search-bar">
-          <button className="hide-filters-btn" onClick={() => setShowFilters(!showFilters)}>
+          <button
+            className="hide-filters-btn"
+            onClick={() => setShowFilters(!showFilters)}
+          >
             <span className="hide-filters-icon">✕</span>
-            {showFilters ? 'הסתר פילטרים' : 'הצג פילטרים'}
+            {showFilters ? 'הסתר פילטרים' : `הצג פילטרים${activeFilterCount > 0 ? ` (${activeFilterCount})` : ''}`}
           </button>
-          
+
           <div className="search-main">
             <label className="search-label">יעדים</label>
             <div className="destinations-input">
-              {selectedDestinations.map((dest, idx) => (
-                <div key={idx} className="destination-tag">
+              {filters.destinations.map((dest) => (
+                <div key={dest} className="destination-tag">
                   {dest}
-                  <button 
-                    className="remove-btn"
-                    onClick={() => removeDestination(dest)}
-                  >
-                    ✕
-                  </button>
+                  <button className="remove-btn" onClick={() => removeDestination(dest)}>✕</button>
                 </div>
               ))}
               <input
                 type="text"
                 className="search-input"
                 placeholder="חפשו לפי מדינה, עיר או מספר יעדים..."
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && addDestination()}
               />
             </div>
           </div>
 
-          <button className="search-icon-btn" onClick={handleSearch}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <button className="search-icon-btn" onClick={addDestination}>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M17.5 17.5L13.875 13.875M15.8333 9.16667C15.8333 12.8486 12.8486 15.8333 9.16667 15.8333C5.48477 15.8333 2.5 12.8486 2.5 9.16667C2.5 5.48477 5.48477 2.5 9.16667 2.5C12.8486 2.5 15.8333 5.48477 15.8333 9.16667Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
@@ -72,13 +93,13 @@ export default function SearchProduct() {
             <div className="filter-group">
               <label className="filter-label">גודל פריט</label>
               <div className="size-buttons">
-                {['גדול', 'בינוני', 'קטן'].map(size => (
+                {SIZE_OPTIONS.map((label) => (
                   <button
-                    key={size}
-                    className={`size-btn ${itemSize === size ? 'active' : ''}`}
-                    onClick={() => setItemSize(size)}
+                    key={label}
+                    className={`size-btn ${filters.size === SIZE_MAP[label] ? 'active' : ''}`}
+                    onClick={() => toggleSize(label)}
                   >
-                    {size}
+                    {label}
                   </button>
                 ))}
               </div>
@@ -86,14 +107,14 @@ export default function SearchProduct() {
 
             <div className="filter-group">
               <label className="filter-label">תגמול (מינימום)</label>
-              <select 
+              <select
                 className="filter-select"
-                value={minReward}
-                onChange={(e) => setMinReward(e.target.value)}
+                value={filters.minReward}
+                onChange={(e) => update({ minReward: e.target.value })}
               >
-                <option>הכל</option>
-                <option>$20+</option>
-                <option>$50+</option>
+                {REWARD_OPTIONS.map((opt) => (
+                  <option key={opt}>{opt}</option>
+                ))}
               </select>
             </div>
 
@@ -102,19 +123,20 @@ export default function SearchProduct() {
               <label className="toggle-label">
                 <input
                   type="checkbox"
-                  checked={isFragile}
-                  onChange={(e) => setIsFragile(e.target.checked)}
+                  checked={filters.fragile}
+                  onChange={(e) => update({ fragile: e.target.checked })}
                   className="toggle-input"
                 />
                 <div className="toggle-switch"></div>
               </label>
             </div>
 
-            <button className="reset-btn">איפוס פילטרים</button>
+            <button className="reset-btn" onClick={resetFilters}>
+              איפוס פילטרים
+            </button>
           </div>
         )}
       </div>
     </div>
   );
 }
-

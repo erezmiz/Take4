@@ -3,28 +3,58 @@ import { supabase } from '../lib/supabase';
 import ProductCard from './ProductCard';
 import './ProductsSection.css';
 
-export default function ProductsSection() {
+function parseMinReward(value) {
+  if (!value || value === 'הכל') return null;
+  const num = parseInt(value.replace(/\D/g, ''), 10);
+  return isNaN(num) ? null : num;
+}
+
+export default function ProductsSection({ filters = {} }) {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [loading,  setLoading]  = useState(true);
+  const [error,    setError]    = useState(null);
+
+  const { destinations = [], minReward = 'הכל', size = '', fragile = false } = filters;
 
   useEffect(() => {
     async function fetchRequests() {
-      const { data, error: err } = await supabase
+      setLoading(true);
+      setError(null);
+
+      let query = supabase
         .from('requests')
         .select('*')
         .order('created_at', { ascending: false });
 
-      if (err) {
-        setError(err.message);
-      } else {
-        setProducts(data);
+      if (destinations.length > 0) {
+        const orClause = destinations
+          .map((d) => `destination_country.ilike.%${d}%`)
+          .join(',');
+        query = query.or(orClause);
       }
+
+      if (size) {
+        query = query.eq('size', size);
+      }
+
+      const minVal = parseMinReward(minReward);
+      if (minVal !== null) {
+        query = query.gte('deliver_pay', minVal);
+      }
+
+      if (fragile) {
+        query = query.eq('broken', true);
+      }
+
+      const { data, error: err } = await query;
+
+      if (err) setError(err.message);
+      else setProducts(data);
       setLoading(false);
     }
 
     fetchRequests();
-  }, []);
+  }, [destinations, minReward, size, fragile]);
 
   return (
     <section className="products-section">
@@ -52,7 +82,7 @@ export default function ProductsSection() {
 
       {!loading && !error && products.length === 0 && (
         <div className="products-state">
-          <p>אין בקשות עדיין. היו הראשונים לפרסם!</p>
+          <p>לא נמצאו בקשות התואמות את הפילטרים.</p>
         </div>
       )}
 
