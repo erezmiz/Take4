@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import './SelectedProduct.css';
 
 export default function SelectedProduct({ deal }) {
-  const { name, from, to, price, status, imageUrl } = deal;
+  const navigate = useNavigate();
+  const { name, from, to, price, status, imageUrl, requestId } = deal;
 
   const getStatusWidth = () => {
     switch (status) {
@@ -14,9 +16,17 @@ export default function SelectedProduct({ deal }) {
   };
 
   return (
-    <div className="deal-card">
+    <div
+      className="deal-card"
+      onClick={() => requestId && navigate(`/product/${requestId}`)}
+      style={{ cursor: requestId ? 'pointer' : 'default' }}
+    >
       <div className="deal-image-container">
-        <img src={imageUrl} alt={name} className="deal-image" />
+        {imageUrl ? (
+          <img src={imageUrl} alt={name} className="deal-image" />
+        ) : (
+          <div className="deal-image-placeholder">{name.charAt(0)}</div>
+        )}
       </div>
       <div className="deal-details">
         <div className="deal-header">

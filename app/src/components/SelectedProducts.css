@@ -10,7 +10,7 @@
 }
 
 .deals-header h2 {
-  font-size: var(--font-size-headline-lg);
+  font-size: var(--font-size-heading-lg);
   font-weight: 600;
   color: var(--color-text-primary);
 }
@@ -31,6 +31,14 @@
 
 .history-btn:hover {
   text-decoration: underline;
+}
+
+.deals-empty {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label-md);
+  color: var(--color-on-surface-variant);
+  text-align: center;
+  padding: var(--spacing-xl);
 }
 
 .deals-list {
