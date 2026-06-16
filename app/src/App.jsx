@@ -27,7 +27,7 @@ const router = createBrowserRouter([
     ],
   },
 ], {
-  basename: '/BringIt' // <-- השורה הזו נוספה כאן כדי להגדיר את תת-התיקייה ב-IIS
+  basename: import.meta.env.VITE_BASENAME ?? '',
 });
 
 function App() {

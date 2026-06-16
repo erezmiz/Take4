@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "vite build && cpx \"dist/**/*\" \"C:\\inetpub\\wwwroot\\BringIt\""
+    "deploy": "vite build --mode deploy && cpx \"dist/**/*\" \"C:\\inetpub\\wwwroot\\BringIt\""
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.2",
