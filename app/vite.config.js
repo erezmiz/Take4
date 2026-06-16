@@ -2,7 +2,11 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  build: {
+    // הגדרת המגבלה ל-700 קילובייט
+    chunkSizeWarningLimit: 700,
+  },
   plugins: [react()],
-  base: '/BringIt/', // <-- הוסף את השורה הזו בדיוק!
-})
+  base: mode === 'deploy' ? '/BringIt' : '',
+})) 
