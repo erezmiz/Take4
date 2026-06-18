@@ -21,12 +21,14 @@ export default function Navbar() {
     }
   };
 
-  const navLinks = [
-    ...(user ? [{ to: "/profile", text: "פרופיל" }] : []),
-    { to: "/chat",      text: "הודעות" },
-    { to: "/dashboard", text: "בקשות" },
-    { to: "/",          text: "גלה" },
-  ];
+  const navLinks = user
+    ? [
+        { to: "/profile",   text: "פרופיל" },
+        { to: "/chat",      text: "הודעות" },
+        { to: "/dashboard", text: "בקשות" },
+        { to: "/",          text: "גלה" },
+      ]
+    : [];
 
   return (
     <header className="navbar-header">
