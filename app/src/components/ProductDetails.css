@@ -156,7 +156,7 @@
 }
 
 .product-title {
-  font-size: var(--font-size-heading-xl);
+  font-size: 21;
   font-weight: 700;
   color: var(--color-on-background);
   line-height: 1.2;
